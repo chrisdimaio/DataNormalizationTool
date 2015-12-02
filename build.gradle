@@ -22,6 +22,11 @@ jar {
     baseName "dnt"
 }
 
+javadoc {
+    options.windowTitle 'Data Normalization Tool'
+    options.noQualifiers 'all'
+}
+
 repositories {
     mavenCentral()
 }
