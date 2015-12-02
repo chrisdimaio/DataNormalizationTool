@@ -1,0 +1,45 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'checkstyle'
+
+group = 'datanormalizationtool'
+mainClassName = 'datanormalizationtool.MainClass'
+version = '1.0.0-alpha'
+
+
+
+checkstyle {
+    toolVersion = '6.13'
+}
+
+compileJava {
+    sourceCompatibility = '1.6'
+    targetCompatibility = '1.6'
+    compileJava.options.bootClasspath = "C:/Program Files/Java/jdk1.6.0_45/jre/lib/rt.jar"
+}
+
+jar {
+    baseName "dnt"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.apache.poi:poi:3.13'
+    compile 'org.apache.poi:poi-ooxml:3.13'
+    compile 'com.google.guava:guava:18.0'
+
+    testCompile 'junit:junit:4.12'
+}
+
+task(runDataNormalizationTool, dependsOn: jar, type: JavaExec ) {
+    main = 'datanormalizationtool.MainClass'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task copyToLibs(type: Copy) {
+    into "./build/libs"
+    from configurations.runtime
+}
