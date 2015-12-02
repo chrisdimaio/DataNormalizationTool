@@ -11,31 +11,47 @@ import java.util.Map;
 /**
  * Created by cdimaio on 11/30/2015.
  */
-abstract class TableData {
-  static final int COL_REMOVED     = 0;
-  static final int COL_SCHOOL_YEAR = 1;
-  static final int COL_ORD_CODE    = 2;
-  static final int COL_REC_NBR     = 3;
-  static final int COL_FIRSTNAME   = 4;
-  static final int COL_LASTNAME    = 5;
-  static final int COL_MIDDLENAME  = 6;
-  static final int COL_DATEOFBIRTH = 7;
-  static final int COL_TOWNCODE    = 8;
-  static final int COL_GRADE       = 9;
-  static final int COL_DOB_YEAR    = 10;
+public abstract class TableData {
+  protected static final int COL_REMOVED     = 0;
+  protected static final int COL_SCHOOL_YEAR = 1;
+  protected static final int COL_ORD_CODE    = 2;
+  protected static final int COL_REC_NBR     = 3;
+  protected static final int COL_FIRSTNAME   = 4;
+  protected static final int COL_LASTNAME    = 5;
+  protected static final int COL_MIDDLENAME  = 6;
+  protected static final int COL_DATEOFBIRTH = 7;
+  protected static final int COL_TOWNCODE    = 8;
+  protected static final int COL_GRADE       = 9;
+  protected static final int COL_DOB_YEAR    = 10;
 
-  final Table<Integer, Integer, String> table = HashBasedTable.create();
+  private final Table<Integer, Integer, String> table = HashBasedTable.create();
 
   public abstract void loadData(File file);
 
+  /**
+   * Calls the underlying tables toString method.
+   * @return String representation of underlying table structure.
+   */
   public String toString() {
     return table.toString();
   }
 
+  /**
+   * Get cell value at a specified row and column.
+   * @param row
+   * @param col
+   * @return value at row and column.
+   */
   protected String getCell(int row, int col) {
     return table.column(col).get(row);
   }
 
+  /**
+   * Set cell value at a specified row and column.
+   * @param row
+   * @param col
+   * @param value
+   */
   protected void setCell(int row, int col, String value) {
     table.column(col).put(row, value);
   }

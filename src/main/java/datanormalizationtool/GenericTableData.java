@@ -13,7 +13,7 @@ import java.util.Iterator;
 /**
  * Created by cdimaio on 12/1/2015.
  */
-class GenericTableData extends TableData {
+public class GenericTableData extends TableData {
 
   private int headerRowIndex;
   private int rawBirthDateIndex;

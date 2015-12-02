@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * Created by cdimaio on 11/30/2015.
  */
-class HeaderData {
+public class HeaderData {
   public static final HeaderList FIRST_NAME_HEADERS = new HeaderList(Arrays.asList(
           "First Name", "Fname"
   ));
