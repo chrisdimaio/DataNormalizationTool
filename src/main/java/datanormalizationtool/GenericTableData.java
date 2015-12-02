@@ -23,6 +23,10 @@ public class GenericTableData extends TableData {
   private int rawMiddleNameIndex;
   private int rawTownCodeIndex;
 
+  /**
+   * Loads data from file system data into this of instance of GenericTableData.
+   * @param file The file to be loaded.
+   */
   public void loadData(final File file) {
     Workbook workbook;
     Sheet sheet = null;

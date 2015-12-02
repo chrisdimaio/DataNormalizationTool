@@ -24,7 +24,7 @@ public abstract class TableData {
   protected static final int COL_GRADE       = 9;
   protected static final int COL_DOB_YEAR    = 10;
 
-  private final Table<Integer, Integer, String> table = HashBasedTable.create();
+  protected final Table<Integer, Integer, String> table = HashBasedTable.create();
 
   public abstract void loadData(File file);
 
@@ -38,8 +38,8 @@ public abstract class TableData {
 
   /**
    * Get cell value at a specified row and column.
-   * @param row
-   * @param col
+   * @param row row of the cell you want the value of.
+   * @param col column of the cell you want the value of.
    * @return value at row and column.
    */
   protected String getCell(int row, int col) {
@@ -48,15 +48,15 @@ public abstract class TableData {
 
   /**
    * Set cell value at a specified row and column.
-   * @param row
-   * @param col
-   * @param value
+   * @param row row of the cell you want to set.
+   * @param col column of the cell you want to set.
+   * @param value the value to be set.
    */
   protected void setCell(int row, int col, String value) {
     table.column(col).put(row, value);
   }
 
-  String cellToString(Cell cell) {
+  protected String cellToString(Cell cell) {
     String cellValue = "";
     switch (cell.getCellType()) {
       case Cell.CELL_TYPE_STRING:
