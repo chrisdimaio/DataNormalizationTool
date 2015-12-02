@@ -8,8 +8,6 @@ import org.junit.Test;
 
 import java.io.File;
 
-
-
 /**
  * Tests for GenericTableData class.
  */
