@@ -17,8 +17,10 @@ public class GenericTableDataTests {
   @Test
   public void loadDataTestOne() {
     String data = TEST_RESOURCES_DIR + "load_data_test_one.xlsx";
+    int sheetIndex = 0;
+
     TableData table = new GenericTableData();
-    table.loadData(new File(data));
+    table.loadData(new File(data), sheetIndex);
     assertEquals(GenericTableDataExpected.LOAD_DATA_TEST_ONE, table.toString());
   }
 }
