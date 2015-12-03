@@ -1,32 +1,23 @@
 package datanormalizationtool;
 
-import com.google.common.collect.HashBasedTable;
-import com.google.common.collect.Table;
-
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 
 import java.io.File;
-import java.util.Map;
+import java.util.Iterator;
 
 /**
  * Created by cdimaio on 11/30/2015.
  */
 public abstract class TableData {
-  protected static final int COL_REMOVED     = 0;
-  protected static final int COL_SCHOOL_YEAR = 1;
-  protected static final int COL_ORD_CODE    = 2;
-  protected static final int COL_REC_NBR     = 3;
-  protected static final int COL_FIRSTNAME   = 4;
-  protected static final int COL_LASTNAME    = 5;
-  protected static final int COL_MIDDLENAME  = 6;
-  protected static final int COL_DATEOFBIRTH = 7;
-  protected static final int COL_TOWNCODE    = 8;
-  protected static final int COL_GRADE       = 9;
-  protected static final int COL_DOB_YEAR    = 10;
+  protected final DeseTable table = new DeseTable();
 
-  protected final Table<Integer, Integer, String> table = HashBasedTable.create();
+  protected Sheet dataSheet;
 
-  public abstract void loadData(File file);
+  public abstract void loadData(File file, int sheetIndex);
+
+  protected abstract boolean foundHeaderRow(Sheet sheet);
 
   /**
    * Calls the underlying tables toString method.
@@ -37,13 +28,30 @@ public abstract class TableData {
   }
 
   /**
+   * Finds the sheet with data table on it.
+   * @param workbook wookbook containing sheets.
+   * @return true if a sheet with data table is found
+   */
+  protected boolean foundDataSheet(Workbook workbook) {
+    Iterator<Sheet> sheetIterator = workbook.sheetIterator();
+    while (sheetIterator.hasNext()) {
+      Sheet sheet = sheetIterator.next();
+      if (foundHeaderRow(sheet)) {
+        dataSheet = sheet;
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
    * Get cell value at a specified row and column.
    * @param row row of the cell you want the value of.
    * @param col column of the cell you want the value of.
    * @return value at row and column.
    */
   protected String getCell(int row, int col) {
-    return table.column(col).get(row);
+    return table.getCell(row, col);
   }
 
   /**
@@ -53,7 +61,7 @@ public abstract class TableData {
    * @param value the value to be set.
    */
   protected void setCell(int row, int col, String value) {
-    table.column(col).put(row, value);
+    table.setCell(row, col, value);
   }
 
   protected String cellToString(Cell cell) {
