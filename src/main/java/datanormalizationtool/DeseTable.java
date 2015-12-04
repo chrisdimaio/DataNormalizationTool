@@ -4,7 +4,7 @@ import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 
 /**
- * Created by cdimaio on 12/2/2015.
+ * Table set up in DESE format.
  */
 public class DeseTable {
   protected static final int COL_REMOVED     = 0;
@@ -19,42 +19,40 @@ public class DeseTable {
   protected static final int COL_GRADE       = 9;
   protected static final int COL_DOB_YEAR    = 10;
 
-  protected final Table<Integer, Integer, String> table = HashBasedTable.create();
-
+  protected final Table<Integer, Integer, CellData> table = HashBasedTable.create();
+  
   /**
-   * Table set up to DESE format.
+   * Constructor for DESE table.
    */
   public DeseTable() {
-    setCell(0, COL_REMOVED, "Removed");
-    setCell(0, COL_SCHOOL_YEAR, "SCHOOL_YEAR");
-    setCell(0, COL_ORD_CODE, "ORG_CODE");
-    setCell(0, COL_REC_NBR, "REC_NBR");
-    setCell(0, COL_FIRSTNAME, "FIRSTNAME");
-    setCell(0, COL_LASTNAME, "LASTNAME");
-    setCell(0, COL_MIDDLENAME, "MIDDLENAME");
-    setCell(0, COL_DATEOFBIRTH, "DATEOFBIRTH");
-    setCell(0, COL_TOWNCODE, "TOWNCODE");
-    setCell(0, COL_GRADE, "GRADE");
-    setCell(0, COL_DOB_YEAR, "DOB_YEAR");
+    table.column(COL_REMOVED).put(0, new CellData("Removed"));
+    table.column(COL_SCHOOL_YEAR).put(0, new CellData("SCHOOL_YEAR"));
+    table.column(COL_ORD_CODE).put(0, new CellData("ORG_CODE"));
+    table.column(COL_REC_NBR).put(0, new CellData("REC_NBR"));
+    table.column(COL_FIRSTNAME).put(0, new CellData("FIRSTNAME"));
+    table.column(COL_LASTNAME).put(0, new CellData("LASTNAME"));
+    table.column(COL_MIDDLENAME).put(0, new CellData("MIDDLENAME"));
+    table.column(COL_DATEOFBIRTH).put(0, new CellData("DATEOFBIRTH"));
+    table.column(COL_TOWNCODE).put(0, new CellData("TOWNCODE"));
+    table.column(COL_GRADE).put(0, new CellData("GRADE"));
+    table.column(COL_DOB_YEAR).put(0, new CellData("DOB_YEAR"));
   }
 
   /**
-   * Get cell value at a specified row and column.
    * @param row row of the cell you want the value of.
    * @param col column of the cell you want the value of.
    * @return value at row and column.
    */
-  public String getCell(int row, int col) {
+  public CellData getCell(int row, int col) {
     return table.column(col).get(row);
   }
 
   /**
-   * Set cell value at a specified row and column.
    * @param row row of the cell you want to set.
    * @param col column of the cell you want to set.
    * @param value the value to be set.
    */
-  public void setCell(int row, int col, String value) {
+  public void setCell(int row, int col, CellData value) {
     table.column(col).put(row, value);
   }
 
@@ -62,6 +60,7 @@ public class DeseTable {
    * Calls the underlying tables toString method.
    * @return String representation of underlying table structure.
    */
+  @Override
   public String toString() {
     return table.toString();
   }
