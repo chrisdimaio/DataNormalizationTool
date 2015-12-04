@@ -23,6 +23,7 @@ public abstract class TableData {
    * Calls the underlying tables toString method.
    * @return String representation of underlying table structure.
    */
+  @Override
   public String toString() {
     return table.toString();
   }
@@ -50,7 +51,7 @@ public abstract class TableData {
    * @param col column of the cell you want the value of.
    * @return value at row and column.
    */
-  protected String getCell(int row, int col) {
+  protected CellData getCell(int row, int col) {
     return table.getCell(row, col);
   }
 
@@ -60,7 +61,7 @@ public abstract class TableData {
    * @param col column of the cell you want to set.
    * @param value the value to be set.
    */
-  protected void setCell(int row, int col, String value) {
+  protected void setCell(int row, int col, CellData value) {
     table.setCell(row, col, value);
   }
 
