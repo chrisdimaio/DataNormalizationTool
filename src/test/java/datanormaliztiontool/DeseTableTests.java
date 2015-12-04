@@ -13,7 +13,6 @@ public class DeseTableTests {
   @Test
   public void deseTableInstantiationTest() {
     DeseTable table = new DeseTable();
-    System.out.println(table);
-    assertEquals("", "");
+    assertEquals(DeseTableExpected.DESE_TABLE_INSTANTIATION_TEST, table.toString());
   }
 }
