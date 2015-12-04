@@ -28,6 +28,7 @@ public class GenericTableData extends TableData {
    * @param file The file to be loaded.
    * @param sheetIndex the index of the sheet to load data from.
    */
+  @Override
   public void loadData(File file, int sheetIndex) {
     Workbook workbook = null;
 
@@ -42,18 +43,25 @@ public class GenericTableData extends TableData {
       Row row;
       for (int r = headerRowIndex + 1; r < dataSheet.getLastRowNum(); r++) {
         row = dataSheet.getRow(r);
-        setCell(r, DeseTable.COL_FIRSTNAME, cellToString(row.getCell(rawFirstNameIndex)));
-        setCell(r, DeseTable.COL_LASTNAME, cellToString(row.getCell(rawLastNameIndex)));
-        setCell(r, DeseTable.COL_MIDDLENAME, cellToString(row.getCell(rawMiddleNameIndex)));
-        setCell(r, DeseTable.COL_DATEOFBIRTH, cellToString(row.getCell(rawBirthDateIndex)));
-        setCell(r, DeseTable.COL_TOWNCODE, cellToString(row.getCell(rawTownCodeIndex)));
-        setCell(r, DeseTable.COL_GRADE, cellToString(row.getCell(rawGradeIndex)));
+        setCell(r, DeseTable.COL_FIRSTNAME, 
+                new CellData(cellToString(row.getCell(rawFirstNameIndex))));
+        setCell(r, DeseTable.COL_LASTNAME, 
+                new CellData(cellToString(row.getCell(rawLastNameIndex))));
+        setCell(r, DeseTable.COL_MIDDLENAME, 
+                new CellData(cellToString(row.getCell(rawMiddleNameIndex))));
+        setCell(r, DeseTable.COL_DATEOFBIRTH, 
+                new CellData(cellToString(row.getCell(rawBirthDateIndex))));
+        setCell(r, DeseTable.COL_TOWNCODE, 
+                new CellData(cellToString(row.getCell(rawTownCodeIndex))));
+        setCell(r, DeseTable.COL_GRADE, 
+                new CellData(cellToString(row.getCell(rawGradeIndex))));
       }
     } else {
       System.out.println("No header row found.");
     }
   }
-
+  
+  @Override
   protected boolean foundHeaderRow(Sheet sheet) {
     boolean headerRowFound = false;
 
