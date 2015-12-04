@@ -10,6 +10,8 @@ class MainClass {
   public static void main(String[] args) {
     TableData table = new GenericTableData();
     table.loadData(new File(SAMPLE_SCHOOL_DATA), 0);
-    System.out.println(table);
+    Normalizer normalizer = new Normalizer();
+    normalizer.normalize(table);
+    System.out.println("cell 3,5: " + table.getCell(3, 5));
   }
 }
