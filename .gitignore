@@ -2,6 +2,8 @@
 build
 .gradle
 .idea
+.nb-gradle/
 
 #File extensions
 *.iml
+.nb-gradle-properties
