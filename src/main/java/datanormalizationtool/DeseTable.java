@@ -3,10 +3,14 @@ package datanormalizationtool;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 
+import java.util.Map;
+
 /**
  * Table set up in DESE format.
  */
 public class DeseTable {
+  public static final int COLUMN_COUNT = 11;
+  
   protected static final int COL_REMOVED     = 0;
   protected static final int COL_SCHOOL_YEAR = 1;
   protected static final int COL_ORD_CODE    = 2;
@@ -37,7 +41,7 @@ public class DeseTable {
     table.column(COL_GRADE).put(0, new CellData("GRADE"));
     table.column(COL_DOB_YEAR).put(0, new CellData("DOB_YEAR"));
   }
-
+  
   /**
    * @param row row of the cell you want the value of.
    * @param col column of the cell you want the value of.
@@ -46,7 +50,42 @@ public class DeseTable {
   public CellData getCell(int row, int col) {
     return table.column(col).get(row);
   }
-
+  
+  /**
+   * Returns Map representation of row at rowIndex.
+   * @param rowIndex index of the row to be returned.
+   * @return Map representation of row.
+   */
+  public Map<Integer, CellData> getRow(int rowIndex) {
+    return table.row(rowIndex);
+  }
+  
+  /**
+   * Returns the number of rows in the table.
+   * @return number of rows in the table.
+   */
+  public int getRowCount() {
+    return table.rowMap().size();
+  }
+  
+  /**
+   * Initializes row with empty CellData objects.
+   * @param rowIndex index of row to be initialized.
+   */
+  public void initializeRow(int rowIndex) {
+    for (int i = 0; i < DeseTable.COLUMN_COUNT; i++) {
+      table.column(i).put(rowIndex, new CellData(""));
+    }
+  }
+  
+  /**
+   * Removes the row at rowIndex.
+   * @param rowIndex index of row to be removed.
+   */
+  public void removeRow(int rowIndex) {
+    table.row(rowIndex).clear();
+  }
+  
   /**
    * @param row row of the cell you want to set.
    * @param col column of the cell you want to set.
