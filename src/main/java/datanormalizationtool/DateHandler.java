@@ -11,6 +11,7 @@ import java.util.Locale;
  * A class for handling dates of various formats.
  */
 public class DateHandler {
+  private static final String STANDARD_FORMAT = "yyyy-MM-dd";
   
   private static final String[] DATE_PATTERNS = {
     // Must be ordered by year format shortest to longest.
@@ -28,18 +29,18 @@ public class DateHandler {
    * @param inputDate date of various format
    * @return date in standard format.
    */
-  public static String dates(String inputDate) {
+  public static Date dates(String inputDate) {
     inputDate = inputDate.toLowerCase();
     inputDate = inputDate.replaceAll("st|nd|rd|th", "");
     
     try {
       Date date = DateUtils.parseDateStrictly(inputDate, DATE_PATTERNS);
 
-      DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-      return formatter.format(date);
+      DateFormat formatter = new SimpleDateFormat(STANDARD_FORMAT, Locale.US);
+      return formatter.parse(formatter.format(date));
     } catch (Exception e) {
       e.printStackTrace();
     }
-    return inputDate;
+    return null;
   }
 }
