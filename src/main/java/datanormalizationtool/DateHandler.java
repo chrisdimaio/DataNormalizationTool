@@ -1,41 +1,45 @@
 package datanormalizationtool;
 
-import java.util.Date;
+import org.apache.commons.lang3.time.DateUtils;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-
-import org.apache.commons.lang3.time.DateUtils;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * A class for handling dates of various formats.
  */
 public class DateHandler {
   
-  private static final String DATE_PATTERNS[] = {
-    "MM/dd/yyyy",
+  private static final String[] DATE_PATTERNS = {
+    // Must be ordered by year format shortest to longest.
+    // *Might be able to remove all '/ - ,' etc characters.
     "MM/dd/yy",
+    "MM-dd-yy",
+    "MMMM dd, yy",
+    "MM/dd/yyyy",
     "MM-dd-yyyy",
-    "MM-dd-yy"
-  };  
+    "MMMM dd, yyyy",
+  };
+  
+  /**
+   * Takes in dates of various formats and returns them in a standard format.
+   * @param inputDate date of various format
+   * @return date in standard format.
+   */
   public static String dates(String inputDate) {
-      try {
-        Date date = DateUtils.parseDateStrictly(inputDate, DATE_PATTERNS);
-        
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        return formatter.format(date);
+    inputDate = inputDate.toLowerCase();
+    inputDate = inputDate.replaceAll("st|nd|rd|th", "");
+    
+    try {
+      Date date = DateUtils.parseDateStrictly(inputDate, DATE_PATTERNS);
 
-        
-      } catch (Exception e) {
-          e.printStackTrace();
-      }
-      return inputDate;
+      DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+      return formatter.format(date);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return inputDate;
   }
 }
-//        DateFormat input = new SimpleDateFormat("mm-dd-yyyy");
-//        DateFormat output = new SimpleDateFormat("mm/dd/yyyy");
-//        
-//        String inputText = "05/05/1986";
-//        Date date = input.parse(inputText);
-//        String outputText = output.format(date);
-//        
-//        System.out.println(outputText);
