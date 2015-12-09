@@ -12,6 +12,10 @@ public class CellData {
     flag  = Flag.NO_FLAG;
   }
   
+  public boolean equals(CellData cell) {
+    return value.equalsIgnoreCase(cell.getValue()) && flag.equals(cell.getFlag());
+  }
+  
   /**
    * flag getter.
    * @return the flag of this cell. NO_FLAG means no flag has been set.
