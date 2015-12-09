@@ -6,6 +6,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 import java.io.File;
 import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Created by cdimaio on 11/30/2015.
@@ -51,10 +52,60 @@ public abstract class TableData {
    * @param col column of the cell you want the value of.
    * @return value at row and column.
    */
-  protected CellData getCell(int row, int col) {
+  public CellData getCell(int row, int col) {
     return table.getCell(row, col);
   }
-
+  
+  /**
+   * Returns the number of columns in the underlying DeseTable.
+   * @return number of columns in the table.
+   */
+  public int getColumnCount() {
+    return table.COLUMN_COUNT;
+  }
+  
+  /**
+   * Returns Map representation of row at rowIndex.
+   * @param rowIndex index of the row to be returned.
+   * @return Map representation of row.
+   */
+  public Map<Integer, CellData> getRow(int rowIndex) {
+    return table.getRow(rowIndex);
+  }
+  
+  /**
+   * Returns the number of rows in the underlying DeseTable.
+   * @return number of rows in the table.
+   */
+  public int getRowCount() {
+    return table.getRowCount();
+  }
+  
+  /**
+   * Initializes row with empty CellData objects.
+   * @param rowIndex index of row to be initialized.
+   */
+  public void initializeRow(int rowIndex) {
+    table.initializeRow(rowIndex);
+  }
+  
+  /**
+   * Print table contents.
+   */
+  public void printTable() {
+    for (int i = 0; i < getRowCount(); i++) {
+      System.out.println(table.getRow(i));
+    }
+  }
+  
+  /**
+   * Removes the row at rowIndex.
+   * @param rowIndex index of row to be removed.
+   */
+  public void removeRow(int rowIndex) {
+    table.removeRow(rowIndex);
+  }
+  
   /**
    * Set cell value at a specified row and column.
    * @param row row of the cell you want to set.
