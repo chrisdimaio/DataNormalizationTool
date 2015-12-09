@@ -41,8 +41,9 @@ public class GenericTableData extends TableData {
 
     if (foundDataSheet(workbook)) {
       Row row;
-      for (int r = headerRowIndex + 1; r < dataSheet.getLastRowNum(); r++) {
+      for (int r = headerRowIndex + 1; r < dataSheet.getLastRowNum() + 1; r++) {
         row = dataSheet.getRow(r);
+        initializeRow(r);
         setCell(r, DeseTable.COL_FIRSTNAME, 
                 new CellData(cellToString(row.getCell(rawFirstNameIndex))));
         setCell(r, DeseTable.COL_LASTNAME, 
