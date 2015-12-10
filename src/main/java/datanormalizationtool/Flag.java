@@ -6,5 +6,6 @@ package datanormalizationtool;
 public enum Flag {
   NO_FLAG,
   NO_MIDDLE_NAME,
-  AGE_GRADE_MISMATCH
+  AGE_GRADE_MISMATCH,
+  UNKNOWN_TOWN
 }
