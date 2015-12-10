@@ -29,13 +29,12 @@ public class DateHandler {
    * @param inputDate date of various format
    * @return date in standard format.
    */
-  public static Date dates(String inputDate) {
+  public static Date standardizeDates(String inputDate) {
     inputDate = inputDate.toLowerCase();
     inputDate = inputDate.replaceAll("st|nd|rd|th", "");
     
     try {
       Date date = DateUtils.parseDateStrictly(inputDate, DATE_PATTERNS);
-
       DateFormat formatter = new SimpleDateFormat(STANDARD_FORMAT, Locale.US);
       return formatter.parse(formatter.format(date));
     } catch (Exception e) {
