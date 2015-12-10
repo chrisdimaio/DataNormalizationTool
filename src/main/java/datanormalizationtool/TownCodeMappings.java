@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class TownCodeMappings {
   
   /**
-   * Convenience method. 
+   * Check if code is a valid town code. 
    * @param code town code to validate.
    * @return true if town code is valid.
    */
@@ -18,7 +18,7 @@ public class TownCodeMappings {
   }
   
   /**
-   * Convenience method. 
+   * Check if name is a valid town name.
    * @param name town name to validate.
    * @return true if town name is valid.
    */
