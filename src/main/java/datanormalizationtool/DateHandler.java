@@ -11,7 +11,7 @@ import java.util.Locale;
  * A class for handling dates of various formats.
  */
 public class DateHandler {
-  private static final String STANDARD_FORMAT = "yyyy-MM-dd";
+  private static final String STANDARD_FORMAT = "MM/dd/yyyy";
   
   private static final String[] DATE_PATTERNS = {
     // Must be ordered by year format shortest to longest.
