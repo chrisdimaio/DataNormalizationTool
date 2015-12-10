@@ -16,14 +16,20 @@ public class Normalizer {
   public void normalize(TableData table) {
     removeDuplicates(table);
     cleanAndPopulateDates(table);
-    mapTownCodes(table);
-//    table.printTable();
+    cleanAndMapTownCodes(table);
+    table.printTable();
   }
   
-  private void mapTownCodes(TableData table) {
+  private void cleanAndMapTownCodes(TableData table) {
     for (int i = 1; i < table.getRowCount(); i++) {
       CellData townCodeCell = table.getCell(i, DeseTable.COL_TOWNCODE);
       if (townCodeCell != null) {
+        String townCode = townCodeCell.getValue();
+        if (TownCodeMappings.isTownName(townCode)) {
+          townCodeCell.setValue(TownCodeMappings.getTownCode(townCode));
+        } else if(!TownCodeMappings.isTownCode(townCode)){
+          townCodeCell.setFlag(Flag.UNKNOWN_TOWN);
+        }
         System.out.println(townCodeCell.getValue());
       }
     }
