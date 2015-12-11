@@ -1,5 +1,6 @@
 package datanormalizationtool;
 
+import java.lang.Math;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
@@ -9,7 +10,8 @@ import java.util.Map;
  * Class to error check and clean data.
  */
 public class Normalizer {
-
+  private static final int FLAG_AGE_LIMIT = 18;
+  
   /**
    * Error checks and cleans TableData data structures.
    * @param table data to be normalized.
@@ -19,15 +21,23 @@ public class Normalizer {
     cleanAndPopulateDates(table);
     cleanAndMapTownCodes(table);
     cleanAndValidateGrades(table);
-    compareAgeTowGrade(table);
+    compareAgeToGrade(table);
 //    table.printTable();
   }
   
-  private void compareAgeTowGrade(TableData table) {
+  private void compareAgeToGrade(TableData table) {
     for (int i = 1; i < table.getRowCount(); i++) {
       CellData dobCell = table.getCell(i, DeseTable.COL_DATEOFBIRTH);
-      if (dobCell != null) {
-//        System.out.println(DateHandler.calculateAge(dobCell.getValue()));
+      CellData gradeCell = table.getCell(i, DeseTable.COL_GRADE);
+      if (workableCell(dobCell) && workableCell(gradeCell)) {
+        String grade = gradeCell.getValue();
+        int age         = DateHandler.calculateAgeInMonths(dobCell.getValue());
+        int expectedAge = GradeMappings.getAge(grade);
+        int ageDelta    = Math.abs(age - expectedAge);
+        if(ageDelta > FLAG_AGE_LIMIT) {
+          dobCell.setFlag(Flag.AGE_GRADE_MISMATCH);
+          gradeCell.setFlag(Flag.AGE_GRADE_MISMATCH);
+        }
       }
     }
   }
@@ -76,20 +86,6 @@ public class Normalizer {
     }
   }
   
-  // Test the shit out of this. Might want to change access level to allow unit tests.
-  private void removeDuplicates(TableData table) {
-    Map<Integer, CellData> row;
-    for (int r = 1; r < DeseTable.COLUMN_COUNT; r++) {
-      row = table.getRow(r);
-      int rowCount = table.getRowCount();
-      for (int i = 0; i < rowCount; i++) {
-        if (compareRows(row, table.getRow(i)) && i != r) {
-          table.removeRow(i);
-        }
-      }
-    }
-  }
-  
   private boolean compareRows(Map<Integer, CellData> rowA, Map<Integer, CellData> rowB) {
     boolean same = true;
     if (rowA.isEmpty() || rowB.isEmpty()) {
@@ -104,6 +100,24 @@ public class Normalizer {
       }
     }
     return same;
+  }
+  
+  // Test the shit out of this. Might want to change access level to allow unit tests.
+  private void removeDuplicates(TableData table) {
+    Map<Integer, CellData> row;
+    for (int r = 1; r < DeseTable.COLUMN_COUNT; r++) {
+      row = table.getRow(r);
+      int rowCount = table.getRowCount();
+      for (int i = 0; i < rowCount; i++) {
+        if (compareRows(row, table.getRow(i)) && i != r) {
+          table.removeRow(i);
+        }
+      }
+    }
+  }
+  
+  private boolean workableCell(CellData cell) {
+    return cell != null && cell.getFlag() == Flag.NO_FLAG;
   }
 }
 
