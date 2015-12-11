@@ -9,7 +9,8 @@ import java.util.Map;
  * Class to error check and clean data.
  */
 public class Normalizer {
-  private static final int FLAG_AGE_LIMIT = 18;
+  private static final int FLAG_AGE_LIMIT    = 24;
+  private static final int WARNING_AGE_LIMIT = 18;
   
   /**
    * Error checks and cleans TableData data structures.
@@ -21,7 +22,7 @@ public class Normalizer {
     cleanAndMapTownCodes(table);
     cleanAndValidateGrades(table);
     compareAgeToGrade(table);
-//    table.printTable();
+    table.printTable();
   }
   
   private void compareAgeToGrade(TableData table) {
@@ -33,7 +34,10 @@ public class Normalizer {
         int age         = DateHandler.calculateAgeInMonths(dobCell.getValue());
         int expectedAge = GradeMappings.getAge(grade);
         int ageDelta    = Math.abs(age - expectedAge);
-        if(ageDelta > FLAG_AGE_LIMIT) {
+        if (ageDelta > WARNING_AGE_LIMIT) {
+          dobCell.setWarning(Warning.AGE_GRADE_MISMATCH);
+          gradeCell.setWarning(Warning.AGE_GRADE_MISMATCH);
+        } else if(ageDelta > FLAG_AGE_LIMIT) {
           dobCell.setFlag(Flag.AGE_GRADE_MISMATCH);
           gradeCell.setFlag(Flag.AGE_GRADE_MISMATCH);
         }
@@ -116,7 +120,9 @@ public class Normalizer {
   }
   
   private boolean workableCell(CellData cell) {
-    return cell != null && cell.getFlag() == Flag.NO_FLAG;
+    return cell != null 
+            && cell.getFlag() == Flag.NO_FLAG 
+            && cell.getWarning() == Warning.NO_WARNING;
   }
 }
 
