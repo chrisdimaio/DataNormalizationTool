@@ -22,7 +22,6 @@ public class Normalizer {
     cleanAndMapTownCodes(table);
     cleanAndValidateGrades(table);
     compareAgeToGrade(table);
-    table.printTable();
   }
   
   private void compareAgeToGrade(TableData table) {
