@@ -1,5 +1,6 @@
 package datanormalizationtool;
 
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.Map;
@@ -18,7 +19,18 @@ public class Normalizer {
     cleanAndPopulateDates(table);
     cleanAndMapTownCodes(table);
     cleanAndValidateGrades(table);
-    //    table.printTable();
+    compareAgeTowGrade(table);
+    table.printTable();
+  }
+  
+  private void compareAgeTowGrade(TableData table) {
+    for (int i = 1; i < table.getRowCount(); i++) {
+      CellData dobCell = table.getCell(i, DeseTable.COL_DATEOFBIRTH);
+      if (dobCell != null) {
+//        System.out.println(dobCell.getValue());
+//        DateHandler.calculateAge(dobCell.getValue());
+      }
+    }
   }
   
   private void cleanAndValidateGrades(TableData table) {
@@ -55,7 +67,9 @@ public class Normalizer {
       if (dobCell != null) {
         String date = dobCell.getValue();
         GregorianCalendar calendar = new GregorianCalendar(Locale.US);
-        calendar.setTime(DateHandler.standardizeDates(date));
+        Date dob = DateHandler.standardizeDate(date);
+        dobCell.setValue(DateHandler.formatDate(dob));
+        calendar.setTime(dob);
         int dobYear = calendar.get(GregorianCalendar.YEAR);
         CellData yearCell = new CellData(String.valueOf(dobYear));
         table.setCell(i, DeseTable.COL_DOB_YEAR, yearCell);
