@@ -53,6 +53,11 @@ public class DateHandler {
     return formatter.format(date);
   }
   
+  /**
+   * Calculates age based on date string.
+   * @param dobstr date to determine age from.
+   * @return age base on dobstr.
+   */
   public static int calculateAgeInMonths(String dobstr) {
     try {
       Calendar dob = Calendar.getInstance(Locale.US);
