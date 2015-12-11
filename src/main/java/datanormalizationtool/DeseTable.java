@@ -101,6 +101,18 @@ public class DeseTable {
    */
   @Override
   public String toString() {
-    return table.toString();
+    String str = "";
+    for (int y = 0; y < getRowCount(); y++) {
+      Map<Integer, CellData> row = table.row(y);
+      if (!row.isEmpty()) {
+        str += "{";
+        for (int x = 0; x < row.size(); x++) {
+          CellData cell = row.get(x);
+          str += cell + (x + 1 < row.size()? ", " : "");
+        }
+        str += (y + 1 < getRowCount()? "}\n" : "}");
+      }
+    }
+    return str;
   }
 }
