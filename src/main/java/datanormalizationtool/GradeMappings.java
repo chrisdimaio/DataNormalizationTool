@@ -9,6 +9,24 @@ import java.util.HashMap;
 public class GradeMappings {
   
   /**
+   * Returns age according to grade.
+   * @param grade to map to age.
+   * @return age that maps to grade.
+   */
+  public static final int getAge(String grade) {
+    return GRADE_AGE_MAP.get(grade.toLowerCase());
+  }
+  
+  /**
+   * Maps grade name to it's town code.
+   * @param name name of grade to map to town code.
+   * @return town code.
+   */
+  public static final String getGradeCode(String name) {
+    return GRADE_CODE_MAP.get(name.toLowerCase());
+  }
+  
+  /**
    * Check if code is a valid grade code.
    * @param code town code to validate.
    * @return true if grade code is valid.
@@ -26,13 +44,23 @@ public class GradeMappings {
     return GRADE_CODE_MAP.containsKey(name.toLowerCase());
   }
   
-  /**
-   * Maps grade name to it's town code.
-   * @param name name of grade to map to town code.
-   * @return town code.
-   */
-  public static final String getGradeCode(String name) {
-    return GRADE_CODE_MAP.get(name.toLowerCase());
+  private static final Map<String, Integer> GRADE_AGE_MAP;
+  static {
+    GRADE_AGE_MAP = new HashMap<String, Integer>();
+    GRADE_AGE_MAP.put("pk", 48);
+    GRADE_AGE_MAP.put("k", 60);
+    GRADE_AGE_MAP.put("01", 72);
+    GRADE_AGE_MAP.put("02", 84);
+    GRADE_AGE_MAP.put("03", 96);
+    GRADE_AGE_MAP.put("04", 108);
+    GRADE_AGE_MAP.put("05", 120);
+    GRADE_AGE_MAP.put("06", 132);
+    GRADE_AGE_MAP.put("07", 144);
+    GRADE_AGE_MAP.put("08", 156);
+    GRADE_AGE_MAP.put("09", 168);
+    GRADE_AGE_MAP.put("10", 180);
+    GRADE_AGE_MAP.put("11", 192);
+    GRADE_AGE_MAP.put("12", 204);
   }
   
   private static final Map<String, String> GRADE_CODE_MAP;
