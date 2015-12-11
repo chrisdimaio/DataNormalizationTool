@@ -9,8 +9,9 @@ public class CellData {
   private Warning warning;
   
   public CellData(String val) {
-    value = val;
-    flag  = Flag.NO_FLAG;
+    flag    = Flag.NO_FLAG;
+    value   = val;
+    warning = Warning.NO_WARNING;
   }
   
   public boolean equals(CellData cell) {
