@@ -37,9 +37,9 @@ public class Normalizer {
       CellData gradeCodeCell = table.getCell(i, DeseTable.COL_GRADE);
       if (gradeCodeCell != null) {
         String gradeCode = gradeCodeCell.getValue();
-        if (GradeCodeMappings.isGradeName(gradeCode)) {
-          gradeCodeCell.setValue(GradeCodeMappings.getGradeCode(gradeCode));
-        } else if(!GradeCodeMappings.isGradeCode(gradeCode)){
+        if (GradeMappings.isGradeName(gradeCode)) {
+          gradeCodeCell.setValue(GradeMappings.getGradeCode(gradeCode));
+        } else if(!GradeMappings.isGradeCode(gradeCode)){
           gradeCodeCell.setFlag(Flag.UNKNOWN_GRADE);
         }
       }

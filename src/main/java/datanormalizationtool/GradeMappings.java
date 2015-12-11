@@ -6,7 +6,7 @@ import java.util.HashMap;
 /**
  * A mapping of various grade name permutations to their grade code.
  */
-public class GradeCodeMappings {
+public class GradeMappings {
   
   /**
    * Check if code is a valid grade code.
