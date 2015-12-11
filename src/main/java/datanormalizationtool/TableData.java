@@ -90,17 +90,6 @@ public abstract class TableData {
   }
   
   /**
-   * Print table contents.
-   */
-  public void printTable() {
-    for (int i = 0; i < getRowCount(); i++) {
-      if (!table.getRow(i).isEmpty()) {
-        System.out.println(table.getRow(i));
-      }
-    }
-  }
-  
-  /**
    * Removes the row at rowIndex.
    * @param rowIndex index of row to be removed.
    */
