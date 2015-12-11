@@ -72,6 +72,6 @@ public class CellData {
    */
   @Override
   public String toString() {
-    return "'f:" + flag + " w: " + warning + " v:" + value + "'";
+    return "{f:" + flag + ", w: " + warning + ", v: '" + value + "'}";
   }
 }
