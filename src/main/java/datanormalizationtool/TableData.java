@@ -94,7 +94,9 @@ public abstract class TableData {
    */
   public void printTable() {
     for (int i = 0; i < getRowCount(); i++) {
-      System.out.println(table.getRow(i));
+      if (!table.getRow(i).isEmpty()) {
+        System.out.println(table.getRow(i));
+      }
     }
   }
   
