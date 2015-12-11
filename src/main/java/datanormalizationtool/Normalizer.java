@@ -20,15 +20,14 @@ public class Normalizer {
     cleanAndMapTownCodes(table);
     cleanAndValidateGrades(table);
     compareAgeTowGrade(table);
-    table.printTable();
+//    table.printTable();
   }
   
   private void compareAgeTowGrade(TableData table) {
     for (int i = 1; i < table.getRowCount(); i++) {
       CellData dobCell = table.getCell(i, DeseTable.COL_DATEOFBIRTH);
       if (dobCell != null) {
-//        System.out.println(dobCell.getValue());
-//        DateHandler.calculateAge(dobCell.getValue());
+//        System.out.println(DateHandler.calculateAge(dobCell.getValue()));
       }
     }
   }
@@ -38,9 +37,9 @@ public class Normalizer {
       CellData gradeCodeCell = table.getCell(i, DeseTable.COL_GRADE);
       if (gradeCodeCell != null) {
         String gradeCode = gradeCodeCell.getValue();
-        if (GradeCodeMappings.isGradeName(gradeCode)) {
-          gradeCodeCell.setValue(GradeCodeMappings.getGradeCode(gradeCode));
-        } else if(!GradeCodeMappings.isGradeCode(gradeCode)){
+        if (GradeMappings.isGradeName(gradeCode)) {
+          gradeCodeCell.setValue(GradeMappings.getGradeCode(gradeCode));
+        } else if(!GradeMappings.isGradeCode(gradeCode)){
           gradeCodeCell.setFlag(Flag.UNKNOWN_GRADE);
         }
       }
