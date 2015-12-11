@@ -53,7 +53,7 @@ public class DateHandler {
     return formatter.format(date);
   }
   
-  public static int calculateAge(String dobstr) {
+  public static int calculateAgeInMonths(String dobstr) {
     try {
       Calendar dob = Calendar.getInstance(Locale.US);
       Calendar today = Calendar.getInstance(Locale.US);
@@ -68,7 +68,7 @@ public class DateHandler {
           && today.get(Calendar.DAY_OF_MONTH) < dob.get(Calendar.DAY_OF_MONTH)) {
         age--;  
       }
-      return age;
+      return age * 12;
     } catch(Exception e) {
       e.printStackTrace();
     }
