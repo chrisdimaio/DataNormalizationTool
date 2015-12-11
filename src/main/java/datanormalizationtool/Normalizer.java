@@ -17,7 +17,22 @@ public class Normalizer {
     removeDuplicates(table);
     cleanAndPopulateDates(table);
     cleanAndMapTownCodes(table);
-    table.printTable();
+    cleanAndValidateGrades(table);
+    //    table.printTable();
+  }
+  
+  private void cleanAndValidateGrades(TableData table) {
+    for (int i = 1; i < table.getRowCount(); i++) {
+      CellData gradeCodeCell = table.getCell(i, DeseTable.COL_GRADE);
+      if (gradeCodeCell != null) {
+        String gradeCode = gradeCodeCell.getValue();
+        if (GradeCodeMappings.isGradeName(gradeCode)) {
+          gradeCodeCell.setValue(GradeCodeMappings.getGradeCode(gradeCode));
+        } else if(!GradeCodeMappings.isGradeCode(gradeCode)){
+          gradeCodeCell.setFlag(Flag.UNKNOWN_GRADE);
+        }
+      }
+    }
   }
   
   private void cleanAndMapTownCodes(TableData table) {
@@ -30,7 +45,6 @@ public class Normalizer {
         } else if(!TownCodeMappings.isTownCode(townCode)){
           townCodeCell.setFlag(Flag.UNKNOWN_TOWN);
         }
-        System.out.println(townCodeCell.getValue());
       }
     }
   }
