@@ -6,6 +6,7 @@ package datanormalizationtool;
 public class CellData {
   private Flag flag;
   private String value;
+  private Warning warning;
   
   public CellData(String val) {
     value = val;
@@ -25,14 +26,6 @@ public class CellData {
   }
   
   /**
-   * Method for setting cell flag.
-   * @param flg cell flag value.
-   */
-  public void setFlag(Flag flg) {
-    flag = flg;
-  }
-  
-  /**
    * value getter.
    * @return the value of the cell.
    */
@@ -41,11 +34,35 @@ public class CellData {
   }
   
   /**
+   * warning getter.
+   * @return the warning of this cell. NO_WARNING mean no flag has been set.
+   */
+  public Warning getWarning() {
+    return warning;
+  }
+  
+  /**
+   * Method for setting cell flag.
+   * @param flg cell flag value.
+   */
+  public void setFlag(Flag flg) {
+    flag = flg;
+  }
+  
+  /**
    * Method for setting cell value.
    * @param val cell flag value.
    */
   public void setValue(String val) {
     value = val;
+  }
+  
+  /**
+   * Method for setting cell warning.
+   * @param warn cell warning value;
+   */
+  public void setWarning(Warning warn) {
+    warning = warn;
   }
   
   /**
