@@ -2,11 +2,14 @@ package datanormaliztiontool;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 /**
  * Misc. utils to use for testing.
  */
-public class TestUtils {
+public abstract class TestUtils {
+  public static final String TEST_RESOURCES_DIR = "./build/resources/test/generictabledatatests/";
+  
   public static String fileToString(String filePath) {
     File file = new File(filePath);
     byte[] buffer = new byte[(int)file.length()];
@@ -20,5 +23,19 @@ public class TestUtils {
       e.printStackTrace();
     }
     return new String(buffer);
+  }
+  
+  public static void stringToFile(String data , String filePath) {
+    File file = new File(filePath);
+    byte[] buffer = data.getBytes();
+    
+    try {
+      FileOutputStream stream = new FileOutputStream(file);
+      stream.write(buffer);
+      stream.close();
+    }
+    catch(Exception e) {
+      e.printStackTrace();
+    }
   }
 }
