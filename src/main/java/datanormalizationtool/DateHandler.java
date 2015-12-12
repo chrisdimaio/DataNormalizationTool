@@ -74,7 +74,7 @@ public class DateHandler {
         age--;  
       }
       return age * 12;
-    } catch(Exception e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
     return -1;
