@@ -1,7 +1,7 @@
 package datanormalizationtool;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A mapping of various grade name permutations to their grade code.
@@ -45,6 +45,7 @@ public class GradeMappings {
   }
   
   private static final Map<String, Integer> GRADE_AGE_MAP;
+  
   static {
     GRADE_AGE_MAP = new HashMap<String, Integer>();
     GRADE_AGE_MAP.put("pk", 48);
@@ -64,6 +65,7 @@ public class GradeMappings {
   }
   
   private static final Map<String, String> GRADE_CODE_MAP;
+  
   static {
     GRADE_CODE_MAP = new HashMap<String, String>();
     GRADE_CODE_MAP.put("prek", "pk");
