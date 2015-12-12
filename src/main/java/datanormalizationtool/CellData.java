@@ -8,6 +8,10 @@ public class CellData {
   private String value;
   private Warning warning;
   
+  /**
+   * Creates CellData instance with specified value.
+   * @param val value of CellData instance.
+   */
   public CellData(String val) {
     flag    = Flag.NO_FLAG;
     value   = val;
