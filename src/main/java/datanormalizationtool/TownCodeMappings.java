@@ -1,7 +1,7 @@
 package datanormalizationtool;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A mapping of all Massachusetts towns to their town code.
@@ -36,6 +36,7 @@ public class TownCodeMappings {
   }
   
   private static final Map<String, String> TOWN_CODE_MAP;
+  
   static {
     TOWN_CODE_MAP = new HashMap<String, String>();
     TOWN_CODE_MAP.put("abington", "001");
