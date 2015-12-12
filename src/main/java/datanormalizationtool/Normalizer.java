@@ -36,7 +36,7 @@ public class Normalizer {
         if (ageDelta > WARNING_AGE_LIMIT) {
           dobCell.setWarning(Warning.AGE_GRADE_MISMATCH);
           gradeCell.setWarning(Warning.AGE_GRADE_MISMATCH);
-        } else if(ageDelta > FLAG_AGE_LIMIT) {
+        } else if (ageDelta > FLAG_AGE_LIMIT) {
           dobCell.setFlag(Flag.AGE_GRADE_MISMATCH);
           gradeCell.setFlag(Flag.AGE_GRADE_MISMATCH);
         }
@@ -51,7 +51,7 @@ public class Normalizer {
         String gradeCode = gradeCodeCell.getValue();
         if (GradeMappings.isGradeName(gradeCode)) {
           gradeCodeCell.setValue(GradeMappings.getGradeCode(gradeCode));
-        } else if(!GradeMappings.isGradeCode(gradeCode)){
+        } else if (!GradeMappings.isGradeCode(gradeCode)) {
           gradeCodeCell.setFlag(Flag.UNKNOWN_GRADE);
         }
       }
@@ -65,7 +65,7 @@ public class Normalizer {
         String townCode = townCodeCell.getValue();
         if (TownCodeMappings.isTownName(townCode)) {
           townCodeCell.setValue(TownCodeMappings.getTownCode(townCode));
-        } else if(!TownCodeMappings.isTownCode(townCode)){
+        } else if (!TownCodeMappings.isTownCode(townCode)) {
           townCodeCell.setFlag(Flag.UNKNOWN_TOWN);
         }
       }

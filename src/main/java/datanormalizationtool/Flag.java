@@ -1,7 +1,7 @@
 package datanormalizationtool;
 
 /**
- * Enum of cell flags.
+ * Enum of cell flags. *This might makes sense to be called error.
  */
 public enum Flag {
   AGE_GRADE_MISMATCH,

@@ -10,7 +10,7 @@ import java.io.FileOutputStream;
 public abstract class TestUtils {
   public static final String TEST_RESOURCES_DIR = "./build/resources/test/generictabledatatests/";
   
-  public static String fileToString(String filePath) {
+  protected static String fileToString(String filePath) {
     File file = new File(filePath);
     byte[] buffer = new byte[(int)file.length()];
     
@@ -18,14 +18,13 @@ public abstract class TestUtils {
       FileInputStream stream = new FileInputStream(file);
       stream.read(buffer);
       stream.close();
-    }
-    catch(Exception e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
     return new String(buffer);
   }
   
-  public static void stringToFile(String data , String filePath) {
+  protected static void stringToFile(String data , String filePath) {
     File file = new File(filePath);
     byte[] buffer = data.getBytes();
     
@@ -33,8 +32,7 @@ public abstract class TestUtils {
       FileOutputStream stream = new FileOutputStream(file);
       stream.write(buffer);
       stream.close();
-    }
-    catch(Exception e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
   }

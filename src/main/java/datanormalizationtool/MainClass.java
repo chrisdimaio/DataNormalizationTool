@@ -15,12 +15,12 @@ class MainClass {
     table.loadData(new File(RESOURCE_DIR + SAMPLE_DUPLICATE_DATA), 0);
     Normalizer normalizer = new Normalizer();
     normalizer.normalize(table);
-//    System.out.println("Starting...");
-//    long start = System.currentTimeMillis();
-//    normalizer.normalize(table);
-//    long end = System.currentTimeMillis();
-//    System.out.println("Done!");
-//    long delta = (end - start) / 1000;
-//    System.out.println("It took " + delta + " seconds to complete.");
+    //    System.out.println("Starting...");
+    //    long start = System.currentTimeMillis();
+    //    normalizer.normalize(table);
+    //    long end = System.currentTimeMillis();
+    //    System.out.println("Done!");
+    //    long delta = (end - start) / 1000;
+    //    System.out.println("It took " + delta + " seconds to complete.");
   }
 }
