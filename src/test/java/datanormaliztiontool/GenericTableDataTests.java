@@ -11,16 +11,18 @@ import java.io.File;
 /**
  * Tests for GenericTableData class.
  */
-public class GenericTableDataTests {
-  static final String TEST_RESOURCES_DIR = "./build/resources/test/generictabledatatests/";
-
-  @Test
-  public void loadDataTestOne() {
-    String data = TEST_RESOURCES_DIR + "load_data_test_one.xlsx";
-    int sheetIndex = 0;
-
-    TableData table = new GenericTableData();
-    table.loadData(new File(data), sheetIndex);
-    assertEquals(GenericTableDataExpected.LOAD_DATA_TEST_ONE, table.toString());
-  }
+public class GenericTableDataTests extends TestUtils {
+  
+    @Test
+    public void loadDataTestOne() {
+      String data     = TEST_RESOURCES_DIR + "load_data_test_one.xlsx";
+      String expected = TEST_RESOURCES_DIR + "load_data_test_one_expected.txt";
+      
+      int sheetIndex = 0;
+  
+      TableData table = new GenericTableData();
+      table.loadData(new File(data), sheetIndex);
+      
+      assertEquals(fileToString(expected), table.toString());
+    }
 }
