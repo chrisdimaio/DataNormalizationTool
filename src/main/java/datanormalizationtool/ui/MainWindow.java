@@ -57,14 +57,14 @@ public class MainWindow {
  
     @Override
 		public int getRowCount() {
-			return DATA.getRowCount();
+			return DATA.getRowCount() - 1;
 		}
     
     @Override
 		public Object getValueAt(int rowIndex, int columnIndex) {
       Object result = null;
       
-      CellData cell = DATA.getCell(rowIndex, columnIndex);
+      CellData cell = DATA.getCell(rowIndex + 1, columnIndex);
       if (cell != null) {
         result = cell.getValue();
       }
