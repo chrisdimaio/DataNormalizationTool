@@ -13,7 +13,6 @@ import org.junit.Test;
  */
 public class DateHandlerTests {
   private static final Date EXPECTED_DATE = new GregorianCalendar(2015, 6, 4).getTime();
-  private static final String EXPECTED_DATE_STRING = "Sat Jul 04 00:00:00 EDT 2015";
   
   @Test
   public void standardizeDateTestOne() {
@@ -53,5 +52,10 @@ public class DateHandlerTests {
   @Test
   public void standardizeDateTestEight() {
     assertEquals(EXPECTED_DATE, DateHandler.standardizeDate("Jul 4, 2015"));
+  }
+  
+  @Test
+  public void formatDateTest() {
+    assertEquals("07/04/2015", DateHandler.formatDate(EXPECTED_DATE));
   }
 }
