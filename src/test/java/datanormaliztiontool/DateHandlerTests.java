@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import datanormalizationtool.DateHandler;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Locale;
 import org.junit.Test;
 
 /**
@@ -13,6 +12,25 @@ import org.junit.Test;
  */
 public class DateHandlerTests {
   private static final Date EXPECTED_DATE = new GregorianCalendar(2015, 6, 4).getTime();
+  
+  @Test
+  public void calculateAgeInMonthsTest() {
+    GregorianCalendar today = new GregorianCalendar();
+    today.setTime(new Date());
+    Date twelveMonthsAgo = new GregorianCalendar(
+            today.get(GregorianCalendar.YEAR) - 1,
+            today.get(GregorianCalendar.MONTH),
+            today.get(GregorianCalendar.DAY_OF_MONTH)).getTime();
+    
+    String date = DateHandler.formatDate(twelveMonthsAgo);
+    
+    assertEquals(12, DateHandler.calculateAgeInMonths(date));
+  }
+  
+  @Test
+  public void formatDateTest() {
+    assertEquals("07/04/2015", DateHandler.formatDate(EXPECTED_DATE));
+  }
   
   @Test
   public void standardizeDateTestOne() {
@@ -52,10 +70,5 @@ public class DateHandlerTests {
   @Test
   public void standardizeDateTestEight() {
     assertEquals(EXPECTED_DATE, DateHandler.standardizeDate("Jul 4, 2015"));
-  }
-  
-  @Test
-  public void formatDateTest() {
-    assertEquals("07/04/2015", DateHandler.formatDate(EXPECTED_DATE));
   }
 }
