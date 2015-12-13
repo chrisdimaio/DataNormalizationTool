@@ -124,13 +124,3 @@ public class Normalizer {
             && cell.getWarning() == Warning.NO_WARNING;
   }
 }
-
-// DateHandler test dates.
-//System.out.println(DateHandler.dates("07/04/2015"));
-//System.out.println(DateHandler.dates("07-04-2015"));
-//System.out.println(DateHandler.dates("07/04/15"));
-//System.out.println(DateHandler.dates("07-04-15"));
-//System.out.println(DateHandler.dates("July 4, 2014"));
-//System.out.println(DateHandler.dates("May 5th, 1986"));
-//System.out.println(DateHandler.dates("May 5TH, 1986"));
-//System.out.println(DateHandler.dates("FEB 5, 04"));
