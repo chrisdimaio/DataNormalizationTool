@@ -6,8 +6,6 @@ group = 'datanormalizationtool'
 mainClassName = 'datanormalizationtool.MainClass'
 version = '1.0.0-alpha'
 
-
-
 checkstyle {
     toolVersion = '6.13'
 }
