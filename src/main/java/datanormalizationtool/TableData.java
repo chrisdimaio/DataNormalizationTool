@@ -12,7 +12,7 @@ import java.util.Map;
  * Created by cdimaio on 11/30/2015.
  */
 public abstract class TableData {
-  protected final DeseTable table = new DeseTable();
+  protected DeseTable table = new DeseTable();
 
   protected Sheet dataSheet;
 
@@ -87,6 +87,22 @@ public abstract class TableData {
    */
   public void initializeRow(int rowIndex) {
     table.initializeRow(rowIndex);
+  }
+  
+  public void removeEmptyRows() {
+    DeseTable newTable = new DeseTable();
+    int newRowCount = 0;
+    for (int i = 1; i < table.getRowCount(); i++) {
+      if (!table.getRow(i).isEmpty()) {
+        // Copy row.
+        for (int c = 0; c < getColumnCount(); c++) {
+          CellData cell = table.getCell(i, c);
+          newTable.setCell(newRowCount, c, cell);
+        }
+        newRowCount++;
+      }
+    }
+    table = newTable;
   }
   
   /**

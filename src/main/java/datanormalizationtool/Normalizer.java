@@ -22,6 +22,7 @@ public class Normalizer {
     cleanAndMapTownCodes(table);
     cleanAndValidateGrades(table);
     compareAgeToGrade(table);
+    table.removeEmptyRows();
   }
   
   private void compareAgeToGrade(TableData table) {
@@ -116,6 +117,10 @@ public class Normalizer {
         }
       }
     }
+  }
+  
+  private void removeEmptyRows(TableData table) {
+    table.removeEmptyRows();
   }
   
   private boolean workableCell(CellData cell) {
