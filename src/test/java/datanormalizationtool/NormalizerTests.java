@@ -1,9 +1,7 @@
-package datanormaliztiontool;
+package datanormalizationtool;
 
 import static org.junit.Assert.assertEquals;
 
-import datanormalizationtool.GenericTableData;
-import datanormalizationtool.TableData;
 import java.io.File;
 import org.junit.Test;
 

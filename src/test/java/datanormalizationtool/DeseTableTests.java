@@ -1,8 +1,7 @@
-package datanormaliztiontool;
+package datanormalizationtool;
 
 import static org.junit.Assert.assertEquals;
 
-import datanormalizationtool.DeseTable;
 import org.junit.Test;
 
 /**

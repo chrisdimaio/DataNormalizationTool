@@ -1,4 +1,4 @@
-package datanormaliztiontool;
+package datanormalizationtool;
 
 /**
  * Created by cdimaio on 12/2/2015.

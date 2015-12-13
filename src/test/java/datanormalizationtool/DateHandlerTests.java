@@ -1,8 +1,7 @@
-package datanormaliztiontool;
+package datanormalizationtool;
 
 import static org.junit.Assert.assertEquals;
 
-import datanormalizationtool.DateHandler;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import org.junit.Test;
