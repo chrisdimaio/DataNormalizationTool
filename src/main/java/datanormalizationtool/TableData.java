@@ -91,7 +91,7 @@ public abstract class TableData {
   
   public void removeEmptyRows() {
     DeseTable newTable = new DeseTable();
-    int newRowCount = 0;
+    int newRowCount = 1;
     for (int i = 1; i < table.getRowCount(); i++) {
       if (!table.getRow(i).isEmpty()) {
         // Copy row.
