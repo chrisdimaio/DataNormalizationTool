@@ -1,5 +1,8 @@
 package datanormalizationtool.ui;
 
+import datanormalizationtool.TableData;
+import datanormalizationtool.CellData;
+
 import java.awt.Dimension;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.JFrame;
@@ -12,22 +15,28 @@ import org.jdesktop.swingx.JXTable;
  * Main window of application
  */
 public class MainWindow {
-  private static final String[] DATA = { "This is the 1st String", "String 2", "Another String",
-    "The Final String" };
+  private TableData DATA;
+  
+//  private static final String[] DATA = { "This is the 1st String", "String 2", "Another String",
+//    "The Final String" };
  
-	private static final String[] COLUMNS = { "Name", "Length", "Upper-case" };
+//	private static final String[] COLUMNS = { "Name", "Length", "Upper-case" };
+  
+  public MainWindow(TableData table) {
+    DATA = table;
+  }
   
   public void showUI() {
     JFrame mainWindow = new JFrame("DNT");
     mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    mainWindow.setPreferredSize(new Dimension(700, 500));
+    mainWindow.setPreferredSize(new Dimension(800, 700));
     
     JXTable table = new JXTable(new SampleTableModel());
 		setLookAndFeel();
     mainWindow.getContentPane().add(new JScrollPane(table));
     
     mainWindow.pack();
-    mainWindow.setResizable(false);
+    mainWindow.setResizable(true);
     mainWindow.setVisible(true);
   }
   
@@ -39,37 +48,32 @@ public class MainWindow {
     }
   }
   
-  private static class SampleTableModel extends AbstractTableModel {
+  private class SampleTableModel extends AbstractTableModel {
  
     @Override
 		public int getColumnCount() {
-			return COLUMNS.length;
+			return DATA.getColumnCount();
 		}
  
 		@Override
     public String getColumnName(int column) {
-			return COLUMNS[column];
+			return DATA.getCell(0, column).getValue();
 		}
  
     @Override
 		public int getRowCount() {
-			return DATA.length;
+			return DATA.getRowCount();
 		}
     
     @Override
 		public Object getValueAt(int rowIndex, int columnIndex) {
-      String theData = DATA[rowIndex];
-      Object result;
-      switch (columnIndex) {
-      case 1:
-        result = theData.length(); // auto-boxing.
-        break;
-      case 2:
-        result = theData.toUpperCase();
-        break;
-      default:
-        result = theData;
+      Object result = null;
+      
+      CellData cell = DATA.getCell(rowIndex, columnIndex);
+      if (cell != null) {
+        result = cell.getValue();
       }
+      
       return result;
     }
 	}

@@ -12,13 +12,12 @@ class MainClass {
   private static final String SAMPLE_BIG_DATA = "Big.xlsx";
 
   public static void main(String[] args) {
-    MainWindow window = new MainWindow();
+    TableData table = new GenericTableData();
+    table.loadData(new File(RESOURCE_DIR + SAMPLE_DUPLICATE_DATA), 0);
+    Normalizer normalizer = new Normalizer();
+    normalizer.normalize(table);
+    MainWindow window = new MainWindow(table);
     window.showUI();
-    
-//    TableData table = new GenericTableData();
-//    table.loadData(new File(RESOURCE_DIR + SAMPLE_DUPLICATE_DATA), 0);
-//    Normalizer normalizer = new Normalizer();
-//    normalizer.normalize(table);
     //    System.out.println("Starting...");
     //    long start = System.currentTimeMillis();
     //    normalizer.normalize(table);
