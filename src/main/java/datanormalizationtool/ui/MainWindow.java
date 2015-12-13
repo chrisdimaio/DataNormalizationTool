@@ -17,11 +17,6 @@ import org.jdesktop.swingx.JXTable;
 public class MainWindow {
   private TableData DATA;
   
-//  private static final String[] DATA = { "This is the 1st String", "String 2", "Another String",
-//    "The Final String" };
- 
-//	private static final String[] COLUMNS = { "Name", "Length", "Upper-case" };
-  
   public MainWindow(TableData table) {
     DATA = table;
   }
