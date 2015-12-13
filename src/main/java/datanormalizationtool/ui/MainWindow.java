@@ -26,7 +26,7 @@ public class MainWindow {
     mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     mainWindow.setPreferredSize(new Dimension(800, 700));
     
-    JXTable table = new JXTable(new SampleTableModel());
+    JXTable table = new JXTable(new TableModel());
 		setLookAndFeel();
     mainWindow.getContentPane().add(new JScrollPane(table));
     
@@ -43,7 +43,7 @@ public class MainWindow {
     }
   }
   
-  private class SampleTableModel extends AbstractTableModel {
+  private class TableModel extends AbstractTableModel {
  
     @Override
 		public int getColumnCount() {
