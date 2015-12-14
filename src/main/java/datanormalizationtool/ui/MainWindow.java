@@ -20,6 +20,10 @@ import org.jdesktop.swingx.JXTable;
 public class MainWindow {
   private TableData data;
   
+  public MainWindow() {
+    setLookAndFeel();
+  }
+  
   public String showFileChooser(String startDir) {
     JFileChooser chooser = new JFileChooser();
     FileNameExtensionFilter filter = 
@@ -39,7 +43,6 @@ public class MainWindow {
     mainWindow.setPreferredSize(new Dimension(800, 700));
     
     JXTable table = new JXTable(new TableModel());
-		setLookAndFeel();
     mainWindow.getContentPane().add(new JScrollPane(table));
     
     mainWindow.pack();
