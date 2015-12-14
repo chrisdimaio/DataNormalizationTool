@@ -4,7 +4,10 @@ import datanormalizationtool.TableData;
 import datanormalizationtool.CellData;
 
 import java.awt.Dimension;
+import java.io.File;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
@@ -17,8 +20,17 @@ import org.jdesktop.swingx.JXTable;
 public class MainWindow {
   private TableData DATA;
   
-  public MainWindow(TableData table) {
-    DATA = table;
+  public String showFileChooser() {
+    JFileChooser chooser = new JFileChooser();
+    FileNameExtensionFilter filter = 
+            new FileNameExtensionFilter("Excel Spreadsheet", "xlsx");
+    chooser.setFileFilter(filter);
+    chooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+    int returnVal = chooser.showOpenDialog(null);
+    if(returnVal == JFileChooser.APPROVE_OPTION) {
+      return chooser.getSelectedFile().getAbsolutePath();
+    }
+    return null;
   }
   
   public void showUI() {
@@ -33,6 +45,10 @@ public class MainWindow {
     mainWindow.pack();
     mainWindow.setResizable(true);
     mainWindow.setVisible(true);
+  }
+  
+  public void setTable(TableData table) {
+    DATA = table;
   }
   
   private static void setLookAndFeel() {

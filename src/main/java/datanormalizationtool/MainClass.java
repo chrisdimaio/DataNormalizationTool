@@ -12,18 +12,19 @@ class MainClass {
   private static final String SAMPLE_BIG_DATA = "Big.xlsx";
 
   public static void main(String[] args) {
-    TableData table = new GenericTableData();
-    table.loadData(new File(RESOURCE_DIR + SAMPLE_DUPLICATE_DATA), 0);
-    Normalizer normalizer = new Normalizer();
-    normalizer.normalize(table);
-    MainWindow window = new MainWindow(table);
-    window.showUI();
-    //    System.out.println("Starting...");
-    //    long start = System.currentTimeMillis();
-    //    normalizer.normalize(table);
-    //    long end = System.currentTimeMillis();
-    //    System.out.println("Done!");
-    //    long delta = (end - start) / 1000;
-    //    System.out.println("It took " + delta + " seconds to complete.");
+    MainWindow window = new MainWindow();
+    String filePath = window.showFileChooser();
+    File file = null;
+    if(filePath != null) {
+      file = new File(filePath);
+    }
+    if (file != null && file.exists()) {
+      TableData table = new GenericTableData();
+      table.loadData(file, 0);
+      Normalizer normalizer = new Normalizer();
+      normalizer.normalize(table);
+      window.setTable(table);
+      window.showUI();
+    }
   }
 }
