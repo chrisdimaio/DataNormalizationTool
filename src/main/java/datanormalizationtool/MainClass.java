@@ -12,8 +12,12 @@ class MainClass {
   private static final String SAMPLE_BIG_DATA = "Big.xlsx";
 
   public static void main(String[] args) {
+    String startDir = System.getProperty("user.home") 
+            + "/Dropbox/Programming Projects/datanormalizationtool"
+            + "/build/resources/main";
+    
     MainWindow window = new MainWindow();
-    String filePath = window.showFileChooser();
+    String filePath = window.showFileChooser(startDir);
     File file = null;
     if(filePath != null) {
       file = new File(filePath);

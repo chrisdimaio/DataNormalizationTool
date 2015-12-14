@@ -20,12 +20,12 @@ import org.jdesktop.swingx.JXTable;
 public class MainWindow {
   private TableData data;
   
-  public String showFileChooser() {
+  public String showFileChooser(String startDir) {
     JFileChooser chooser = new JFileChooser();
     FileNameExtensionFilter filter = 
             new FileNameExtensionFilter("Excel Spreadsheet", "xlsx");
     chooser.setFileFilter(filter);
-    chooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+    chooser.setCurrentDirectory(new File(startDir));
     int returnVal = chooser.showOpenDialog(null);
     if(returnVal == JFileChooser.APPROVE_OPTION) {
       return chooser.getSelectedFile().getAbsolutePath();
