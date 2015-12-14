@@ -22,7 +22,17 @@ public class Normalizer {
     cleanAndMapTownCodes(table);
     cleanAndValidateGrades(table);
     compareAgeToGrade(table);
+    checkForEmptyCells(table, DeseTable.COL_MIDDLENAME);
     table.removeEmptyRows();
+  }
+  
+  private void checkForEmptyCells(TableData table, int columnIndex) {
+    for (int i = 1; i < table.getRowCount(); i++) {
+      CellData cell = table.getCell(i, columnIndex);
+      if (workableCell(cell) && cell.getValue().equals("")) {
+        cell.setFlag(Error.NO_MIDDLE_NAME);
+      }
+    }
   }
   
   private void compareAgeToGrade(TableData table) {
