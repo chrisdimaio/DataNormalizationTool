@@ -30,7 +30,7 @@ public class Normalizer {
     for (int i = 1; i < table.getRowCount(); i++) {
       CellData cell = table.getCell(i, columnIndex);
       if (workableCell(cell) && cell.getValue().equals("")) {
-        cell.setFlag(Error.NO_MIDDLE_NAME);
+        cell.setError(Error.NO_MIDDLE_NAME);
       }
     }
   }
@@ -48,8 +48,8 @@ public class Normalizer {
           dobCell.setWarning(Warning.AGE_GRADE_MISMATCH);
           gradeCell.setWarning(Warning.AGE_GRADE_MISMATCH);
         } else if (ageDelta > FLAG_AGE_LIMIT) {
-          dobCell.setFlag(Error.AGE_GRADE_MISMATCH);
-          gradeCell.setFlag(Error.AGE_GRADE_MISMATCH);
+          dobCell.setError(Error.AGE_GRADE_MISMATCH);
+          gradeCell.setError(Error.AGE_GRADE_MISMATCH);
         }
       }
     }
@@ -63,7 +63,7 @@ public class Normalizer {
         if (GradeMappings.isGradeName(gradeCode)) {
           gradeCodeCell.setValue(GradeMappings.getGradeCode(gradeCode));
         } else if (!GradeMappings.isGradeCode(gradeCode)) {
-          gradeCodeCell.setFlag(Error.UNKNOWN_GRADE);
+          gradeCodeCell.setError(Error.UNKNOWN_GRADE);
         }
       }
     }
@@ -77,7 +77,7 @@ public class Normalizer {
         if (TownCodeMappings.isTownName(townCode)) {
           townCodeCell.setValue(TownCodeMappings.getTownCode(townCode));
         } else if (!TownCodeMappings.isTownCode(townCode)) {
-          townCodeCell.setFlag(Error.UNKNOWN_TOWN);
+          townCodeCell.setError(Error.UNKNOWN_TOWN);
         }
       }
     }
@@ -133,9 +133,10 @@ public class Normalizer {
     table.removeEmptyRows();
   }
   
+  // Reason behind this method needs to be revisited.
   private boolean workableCell(CellData cell) {
     return cell != null 
-            && cell.getFlag() == Error.NO_FLAG 
+            && cell.getError() == Error.NO_FLAG 
             && cell.getWarning() == Warning.NO_WARNING;
   }
 }

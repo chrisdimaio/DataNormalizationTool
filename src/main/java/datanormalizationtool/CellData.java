@@ -4,7 +4,7 @@ package datanormalizationtool;
  * Data structure to hold cell data.
  */
 public class CellData {
-  private Error flag;
+  private Error error;
   private String value;
   private Warning warning;
   
@@ -13,21 +13,21 @@ public class CellData {
    * @param val value of CellData instance.
    */
   public CellData(String val) {
-    flag    = Error.NO_FLAG;
+    error   = Error.NO_FLAG;
     value   = val;
     warning = Warning.NO_WARNING;
   }
   
   public boolean equals(CellData cell) {
-    return value.equalsIgnoreCase(cell.getValue()) && flag.equals(cell.getFlag());
+    return value.equalsIgnoreCase(cell.getValue()) && error.equals(cell.getError());
   }
   
   /**
    * flag getter.
    * @return the flag of this cell. NO_FLAG means no flag has been set.
    */
-  public Error getFlag() {
-    return flag;
+  public Error getError() {
+    return error;
   }
   
   /**
@@ -48,10 +48,10 @@ public class CellData {
   
   /**
    * Method for setting cell flag.
-   * @param flg cell flag value.
+   * @param err cell flag value.
    */
-  public void setFlag(Error flg) {
-    flag = flg;
+  public void setError(Error err) {
+    error = err;
   }
   
   /**
@@ -76,6 +76,6 @@ public class CellData {
    */
   @Override
   public String toString() {
-    return "{f:" + flag + ", w: " + warning + ", v: '" + value + "'}";
+    return "{f:" + error + ", w: " + warning + ", v: '" + value + "'}";
   }
 }
