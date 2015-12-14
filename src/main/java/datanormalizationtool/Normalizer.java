@@ -12,21 +12,24 @@ public class Normalizer {
   private static final int FLAG_AGE_LIMIT    = 24;
   private static final int WARNING_AGE_LIMIT = 18;
   
+  private TableData table;
+  
   /**
    * Error checks and cleans TableData data structures.
-   * @param table data to be normalized.
+   * @param data data to be normalized.
    */
-  public void normalize(TableData table) {
-    removeDuplicates(table);
-    cleanAndPopulateDates(table);
-    cleanAndMapTownCodes(table);
-    cleanAndValidateGrades(table);
-    compareAgeToGrade(table);
-    checkForEmptyCells(table, DeseTable.COL_MIDDLENAME);
+  public void normalize(TableData data) {
+    table = data;
+    removeDuplicates();
+    cleanAndPopulateDates();
+    cleanAndMapTownCodes();
+    cleanAndValidateGrades();
+    compareAgeToGrade();
+    checkForEmptyCells(DeseTable.COL_MIDDLENAME);
     table.removeEmptyRows();
   }
   
-  private void checkForEmptyCells(TableData table, int columnIndex) {
+  private void checkForEmptyCells(int columnIndex) {
     for (int i = 1; i < table.getRowCount(); i++) {
       CellData cell = table.getCell(i, columnIndex);
       if (workableCell(cell) && cell.getValue().equals("")) {
@@ -35,7 +38,7 @@ public class Normalizer {
     }
   }
   
-  private void compareAgeToGrade(TableData table) {
+  private void compareAgeToGrade() {
     for (int i = 1; i < table.getRowCount(); i++) {
       CellData dobCell = table.getCell(i, DeseTable.COL_DATEOFBIRTH);
       CellData gradeCell = table.getCell(i, DeseTable.COL_GRADE);
@@ -55,7 +58,7 @@ public class Normalizer {
     }
   }
   
-  private void cleanAndValidateGrades(TableData table) {
+  private void cleanAndValidateGrades() {
     for (int i = 1; i < table.getRowCount(); i++) {
       CellData gradeCodeCell = table.getCell(i, DeseTable.COL_GRADE);
       if (gradeCodeCell != null) {
@@ -69,7 +72,7 @@ public class Normalizer {
     }
   }
   
-  private void cleanAndMapTownCodes(TableData table) {
+  private void cleanAndMapTownCodes() {
     for (int i = 1; i < table.getRowCount(); i++) {
       CellData townCodeCell = table.getCell(i, DeseTable.COL_TOWNCODE);
       if (townCodeCell != null) {
@@ -83,7 +86,7 @@ public class Normalizer {
     }
   }
   
-  private void cleanAndPopulateDates(TableData table) {
+  private void cleanAndPopulateDates() {
     for (int i = 1; i < table.getRowCount(); i++) {
       CellData dobCell = table.getCell(i, DeseTable.COL_DATEOFBIRTH);
       if (dobCell != null) {
@@ -116,7 +119,7 @@ public class Normalizer {
   }
   
   // Test the shit out of this. Might want to change access level to allow unit tests.
-  private void removeDuplicates(TableData table) {
+  private void removeDuplicates() {
     Map<Integer, CellData> row;
     for (int r = 1; r < DeseTable.COLUMN_COUNT; r++) {
       row = table.getRow(r);
@@ -129,7 +132,7 @@ public class Normalizer {
     }
   }
   
-  private void removeEmptyRows(TableData table) {
+  private void removeEmptyRows() {
     table.removeEmptyRows();
   }
   
