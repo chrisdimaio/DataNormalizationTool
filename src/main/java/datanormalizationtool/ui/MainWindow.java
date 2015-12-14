@@ -18,7 +18,7 @@ import org.jdesktop.swingx.JXTable;
  * Main window of application
  */
 public class MainWindow {
-  private TableData DATA;
+  private TableData data;
   
   public String showFileChooser() {
     JFileChooser chooser = new JFileChooser();
@@ -48,7 +48,7 @@ public class MainWindow {
   }
   
   public void setTable(TableData table) {
-    DATA = table;
+    data = table;
   }
   
   private static void setLookAndFeel() {
@@ -63,24 +63,24 @@ public class MainWindow {
  
     @Override
 		public int getColumnCount() {
-			return DATA.getColumnCount();
+			return data.getColumnCount();
 		}
  
 		@Override
     public String getColumnName(int column) {
-			return DATA.getCell(0, column).getValue();
+			return data.getCell(0, column).getValue();
 		}
  
     @Override
 		public int getRowCount() {
-			return DATA.getRowCount() - 1;
+			return data.getRowCount() - 1;
 		}
     
     @Override
 		public Object getValueAt(int rowIndex, int columnIndex) {
       Object result = null;
       
-      CellData cell = DATA.getCell(rowIndex + 1, columnIndex);
+      CellData cell = data.getCell(rowIndex + 1, columnIndex);
       if (cell != null) {
         result = cell.getValue();
       }
