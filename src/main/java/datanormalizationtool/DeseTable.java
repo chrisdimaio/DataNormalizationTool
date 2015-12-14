@@ -11,19 +11,19 @@ import java.util.Map;
 public class DeseTable {
   public static final int COLUMN_COUNT = 11;
   
-  protected static final int COL_REMOVED     = 0;
-  protected static final int COL_SCHOOL_YEAR = 1;
-  protected static final int COL_ORD_CODE    = 2;
-  protected static final int COL_REC_NBR     = 3;
-  protected static final int COL_FIRSTNAME   = 4;
-  protected static final int COL_LASTNAME    = 5;
-  protected static final int COL_MIDDLENAME  = 6;
-  protected static final int COL_DATEOFBIRTH = 7;
-  protected static final int COL_TOWNCODE    = 8;
-  protected static final int COL_GRADE       = 9;
-  protected static final int COL_DOB_YEAR    = 10;
+  public static final int COL_REMOVED     = 0;
+  public static final int COL_SCHOOL_YEAR = 1;
+  public static final int COL_ORD_CODE    = 2;
+  public static final int COL_REC_NBR     = 3;
+  public static final int COL_FIRSTNAME   = 4;
+  public static final int COL_LASTNAME    = 5;
+  public static final int COL_MIDDLENAME  = 6;
+  public static final int COL_DATEOFBIRTH = 7;
+  public static final int COL_TOWNCODE    = 8;
+  public static final int COL_GRADE       = 9;
+  public static final int COL_DOB_YEAR    = 10;
 
-  protected final Table<Integer, Integer, CellData> table = HashBasedTable.create();
+  private final Table<Integer, Integer, CellData> table = HashBasedTable.create();
   
   /**
    * Constructor for DESE table.
