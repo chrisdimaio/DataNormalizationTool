@@ -29,7 +29,7 @@ public class GenericTableData extends TableData {
    */
   @Override
   public void loadData(File file, int sheetIndex) {
-    Workbook workbook = readWorkBook(file);
+    Workbook workbook = readWorkbook(file);
 
     if (foundDataSheet(workbook)) {
       Row row;
