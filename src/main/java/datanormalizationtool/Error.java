@@ -5,7 +5,7 @@ package datanormalizationtool;
  */
 public enum Error {
   AGE_GRADE_MISMATCH,
-  NO_FLAG,
+  NO_ERROR,
   NO_MIDDLE_NAME,
   UNKNOWN_TOWN,
   UNKNOWN_GRADE,
