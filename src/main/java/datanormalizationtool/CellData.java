@@ -42,10 +42,6 @@ public class CellData {
     return !warnings.isEmpty();
   }
   
-  public Error getError(int index) {
-    return errors.get(index);
-  }
-  
   public LinkedList<Error> getErrorList() {
     return errors;
   }
@@ -60,10 +56,6 @@ public class CellData {
   
   public LinkedList<Warning> getWarningList() {
     return warnings;
-  }
-  
-  public Warning getWarning(int index) {
-    return warnings.get(index);
   }
   
   /**
