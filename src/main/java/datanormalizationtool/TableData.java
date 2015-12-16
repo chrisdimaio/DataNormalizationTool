@@ -122,7 +122,7 @@ public abstract class TableData {
     return table.rowHasWarnings(rowIndex);
   }
   
-  protected Workbook readWorkBook(File file) {
+  protected Workbook readWorkbook(File file) {
     try {
       FileInputStream inputStream = new FileInputStream(file);
       return new XSSFWorkbook(inputStream);
