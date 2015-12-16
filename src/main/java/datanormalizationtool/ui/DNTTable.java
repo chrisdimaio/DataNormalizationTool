@@ -16,6 +16,8 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 
 import org.jdesktop.swingx.JXTable;
+import org.jdesktop.swingx.decorator.Highlighter;
+import org.jdesktop.swingx.decorator.HighlighterFactory;
 
 /**
  *
@@ -26,6 +28,10 @@ public class DNTTable extends JXTable {
   
   public DNTTable(AbstractTableModel model, TableData tableData) {
     super(model);
+    
+    Highlighter highlighter = HighlighterFactory.createAlternateStriping();
+    setHighlighters(highlighter);
+    
     data = tableData;
   }
   
