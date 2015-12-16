@@ -30,7 +30,7 @@ public class DNTTable extends JXTable {
   public Component prepareRenderer(TableCellRenderer renderer, int row, int col) {
     Component comp = super.prepareRenderer(renderer, row, col);
 
-    if (data.getCell(row + 1, col).getError() != Error.NO_FLAG) {
+    if (data.getCell(row + 1, col).getError() != Error.NO_ERROR) {
       comp.setBackground(Color.RED);
     }
 
