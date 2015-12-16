@@ -97,6 +97,16 @@ public class DeseTable {
       return result;
   }
   
+  public boolean rowHasWarnings(int rowIndex) {
+      boolean result = false;
+      Map<Integer, CellData> row = table.row(rowIndex);
+      for(int i = 0; i < COLUMN_COUNT; i ++) {
+          CellData cell = row.get(i);
+          result = result || cell.hasWarnings();
+      }
+      return result;
+  }
+  
   /**
    * @param row row of the cell you want to set.
    * @param col column of the cell you want to set.

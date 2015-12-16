@@ -114,7 +114,11 @@ public abstract class TableData {
   }
   
   public boolean rowHasErrors(int rowIndex) {
-      return table.rowHasErrors(rowIndex);
+    return table.rowHasErrors(rowIndex);
+  }
+  
+  public boolean rowHasWarnings(int rowIndex) {
+    return table.rowHasWarnings(rowIndex);
   }
   
   /**
