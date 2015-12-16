@@ -30,14 +30,7 @@ public class GenericTableData extends TableData {
    */
   @Override
   public void loadData(File file, int sheetIndex) {
-    Workbook workbook = null;
-
-    try {
-      FileInputStream inputStream = new FileInputStream(file);
-      workbook = new XSSFWorkbook(inputStream);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+    Workbook workbook = readWorkBook(file);
 
     if (foundDataSheet(workbook)) {
       Row row;

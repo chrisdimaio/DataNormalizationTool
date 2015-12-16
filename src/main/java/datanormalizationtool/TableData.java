@@ -5,8 +5,10 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.Iterator;
 import java.util.Map;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  * Created by cdimaio on 11/30/2015.
@@ -119,6 +121,16 @@ public abstract class TableData {
   
   public boolean rowHasWarnings(int rowIndex) {
     return table.rowHasWarnings(rowIndex);
+  }
+  
+  protected Workbook readWorkBook(File file) {
+    try {
+      FileInputStream inputStream = new FileInputStream(file);
+      return new XSSFWorkbook(inputStream);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return null;
   }
   
   /**
