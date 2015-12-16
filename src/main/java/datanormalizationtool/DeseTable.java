@@ -23,7 +23,8 @@ public class DeseTable {
   public static final int COL_GRADE       = 9;
   public static final int COL_DOB_YEAR    = 10;
 
-  private final Table<Integer, Integer, CellData> table = HashBasedTable.create();
+  private final Table<Integer, Integer, CellData> table 
+          = HashBasedTable.create();
   
   /**
    * Constructor for DESE table.
