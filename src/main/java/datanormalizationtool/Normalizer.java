@@ -120,7 +120,6 @@ public class Normalizer {
     return same;
   }
   
-  // Test the shit out of this. Might want to change access level to allow unit tests.
   private void removeDuplicates() {
     Map<Integer, CellData> row;
     for (int r = 1; r < DeseTable.COLUMN_COUNT; r++) {
