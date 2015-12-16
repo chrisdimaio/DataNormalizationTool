@@ -3,6 +3,8 @@ package datanormalizationtool.ui;
 import datanormalizationtool.TableData;
 
 import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import java.io.File;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -37,9 +39,11 @@ public class MainWindow {
   public void showUI() {
     JFrame mainWindow = new JFrame("DNT");
     mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    mainWindow.setPreferredSize(new Dimension(800, 700));
+    mainWindow.setMinimumSize(new Dimension(800, 400));
+    mainWindow.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
     DNTTable table = new DNTTable(new DNTTableModel(data), data);
     mainWindow.getContentPane().add(new JScrollPane(table));
+    mainWindow.setPreferredSize(table.getPreferredSize());
     mainWindow.pack();
     mainWindow.setResizable(true);
     mainWindow.setVisible(true);
