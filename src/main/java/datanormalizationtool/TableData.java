@@ -31,7 +31,7 @@ public abstract class TableData {
 
   /**
    * Finds the sheet with data table on it.
-   * @param workbook wookbook containing sheets.
+   * @param workbook workbook containing sheets.
    * @return true if a sheet with data table is found
    */
   protected boolean foundDataSheet(Workbook workbook) {
