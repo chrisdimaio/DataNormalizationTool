@@ -113,6 +113,10 @@ public abstract class TableData {
     table.removeRow(rowIndex);
   }
   
+  public boolean rowHasErrors(int rowIndex) {
+      return table.rowHasErrors(rowIndex);
+  }
+  
   /**
    * Set cell value at a specified row and column.
    * @param row row of the cell you want to set.

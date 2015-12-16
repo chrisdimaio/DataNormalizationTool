@@ -3,6 +3,7 @@ package datanormalizationtool;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -85,6 +86,16 @@ public class DeseTable {
    */
   public void removeRow(int rowIndex) {
     table.row(rowIndex).clear();
+  }
+
+  public boolean rowHasErrors(int rowIndex) {
+      boolean result = false;
+      Map<Integer, CellData> row = table.row(rowIndex);
+      for(int i = 0; i < COLUMN_COUNT; i ++) {
+          CellData cell = row.get(i);
+          result = result || cell.hasErrors();
+      }
+      return result;
   }
   
   /**
