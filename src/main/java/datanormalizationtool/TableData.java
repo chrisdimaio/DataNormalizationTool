@@ -96,7 +96,6 @@ public abstract class TableData {
     int newRowCount = 1;
     for (int i = 1; i < table.getRowCount(); i++) {
       if (!table.getRow(i).isEmpty()) {
-        // Copy row.
         for (int c = 0; c < getColumnCount(); c++) {
           CellData cell = table.getCell(i, c);
           newTable.setCell(newRowCount, c, cell);
