@@ -139,7 +139,7 @@ public class Normalizer {
   // Reason behind this method needs to be revisited.
   private boolean workableCell(CellData cell) {
     return cell != null 
-            && cell.getError() == Error.NO_FLAG 
+            && cell.getError() == Error.NO_ERROR 
             && cell.getWarning() == Warning.NO_WARNING;
   }
 }

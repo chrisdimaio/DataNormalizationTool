@@ -13,7 +13,7 @@ public class CellData {
    * @param val value of CellData instance.
    */
   public CellData(String val) {
-    error   = Error.NO_FLAG;
+    error   = Error.NO_ERROR;
     value   = val;
     warning = Warning.NO_WARNING;
   }
