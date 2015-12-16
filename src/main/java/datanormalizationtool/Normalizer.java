@@ -32,8 +32,8 @@ public class Normalizer {
   private void checkForEmptyCells(int columnIndex) {
     for (int i = 1; i < table.getRowCount(); i++) {
       CellData cell = table.getCell(i, columnIndex);
-      if (workableCell(cell) && cell.getValue().equals("")) {
-        cell.setError(Error.NO_MIDDLE_NAME);
+      if (cell != null && cell.getValue().equals("")) {
+        cell.addError(Error.NO_MIDDLE_NAME);
       }
     }
   }
@@ -42,17 +42,19 @@ public class Normalizer {
     for (int i = 1; i < table.getRowCount(); i++) {
       CellData dobCell = table.getCell(i, DeseTable.COL_DATEOFBIRTH);
       CellData gradeCell = table.getCell(i, DeseTable.COL_GRADE);
-      if (workableCell(dobCell) && workableCell(gradeCell)) {
+      if (dobCell != null && gradeCell != null) {
         String grade = gradeCell.getValue();
-        int age         = DateHandler.calculateAgeInMonths(dobCell.getValue());
-        int expectedAge = GradeMappings.getAge(grade);
-        int ageDelta    = Math.abs(age - expectedAge);
-        if (ageDelta > WARNING_AGE_LIMIT) {
-          dobCell.setWarning(Warning.AGE_GRADE_MISMATCH);
-          gradeCell.setWarning(Warning.AGE_GRADE_MISMATCH);
-        } else if (ageDelta > FLAG_AGE_LIMIT) {
-          dobCell.setError(Error.AGE_GRADE_MISMATCH);
-          gradeCell.setError(Error.AGE_GRADE_MISMATCH);
+        if (GradeMappings.isGradeCode(grade)) {
+          int age         = DateHandler.calculateAgeInMonths(dobCell.getValue());
+          int expectedAge = GradeMappings.getAge(grade);
+          int ageDelta    = Math.abs(age - expectedAge);
+          if (ageDelta > WARNING_AGE_LIMIT) {
+            dobCell.addWarning(Warning.AGE_GRADE_MISMATCH);
+            gradeCell.addWarning(Warning.AGE_GRADE_MISMATCH);
+          } else if (ageDelta > FLAG_AGE_LIMIT) {
+            dobCell.addError(Error.AGE_GRADE_MISMATCH);
+            gradeCell.addError(Error.AGE_GRADE_MISMATCH);
+          }
         }
       }
     }
@@ -66,7 +68,7 @@ public class Normalizer {
         if (GradeMappings.isGradeName(gradeCode)) {
           gradeCodeCell.setValue(GradeMappings.getGradeCode(gradeCode));
         } else if (!GradeMappings.isGradeCode(gradeCode)) {
-          gradeCodeCell.setError(Error.UNKNOWN_GRADE);
+          gradeCodeCell.addError(Error.INVALID_GRADE);
         }
       }
     }
@@ -80,7 +82,7 @@ public class Normalizer {
         if (TownCodeMappings.isTownName(townCode)) {
           townCodeCell.setValue(TownCodeMappings.getTownCode(townCode));
         } else if (!TownCodeMappings.isTownCode(townCode)) {
-          townCodeCell.setError(Error.UNKNOWN_TOWN);
+          townCodeCell.addError(Error.UNKNOWN_TOWN);
         }
       }
     }
@@ -134,12 +136,5 @@ public class Normalizer {
   
   private void removeEmptyRows() {
     table.removeEmptyRows();
-  }
-  
-  // Reason behind this method needs to be revisited.
-  private boolean workableCell(CellData cell) {
-    return cell != null 
-            && cell.getError() == Error.NO_ERROR 
-            && cell.getWarning() == Warning.NO_WARNING;
   }
 }
