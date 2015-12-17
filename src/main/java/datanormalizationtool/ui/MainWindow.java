@@ -1,6 +1,7 @@
 package datanormalizationtool.ui;
 
 import datanormalizationtool.TableData;
+import datanormalizationtool.ui.menu.MenuBar;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -16,14 +17,14 @@ import javax.swing.UIManager;
 /**
  * Main window of application
  */
-public class MainWindow {
+public class MainWindow extends JFrame {
   private TableData data;
   
   private DNTTable      table;
   private JFileChooser  chooser;
-  private JFrame        mainWindow;
   
   public MainWindow() {
+    super("DNT");
     setLookAndFeel();
   }
   
@@ -41,18 +42,18 @@ public class MainWindow {
   }
   
   public void showUI() {
-    mainWindow = new JFrame("DNT");
-    mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    mainWindow.setMinimumSize(new Dimension(800, 400));
-    mainWindow.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
-    
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setMinimumSize(new Dimension(800, 400));
+    setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
     table = new DNTTable(new DNTTableModel(data), data);
     
-    mainWindow.getContentPane().add(new JScrollPane(table));
-    mainWindow.setPreferredSize(table.getPreferredSize());
-    mainWindow.pack();
-    mainWindow.setResizable(true);
-    mainWindow.setVisible(true);
+    setJMenuBar(new MenuBar());
+    
+    getContentPane().add(new JScrollPane(table));
+    setPreferredSize(table.getPreferredSize());
+    pack();
+    setResizable(true);
+    setVisible(true);
   }
   
   public void setTable(TableData table) {
