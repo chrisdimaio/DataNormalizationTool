@@ -27,16 +27,4 @@ public class DeseDataHandler extends TableData {
   protected boolean foundHeaderRow(Sheet sheet) {
     return false;
   }
-  
-  private Sheet findSheet(LinkedList<Pattern> patterns, Workbook workbook) {
-    for (Sheet sheet: workbook) {
-      String sheetName = sheet.getSheetName();
-      for (Pattern p: patterns) {
-        if (p.matcher(sheetName.toLowerCase()).matches()) {
-          return sheet;
-        }
-      }
-    }
-    return null;
-  }
 }
