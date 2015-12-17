@@ -45,7 +45,9 @@ public class MainWindow {
     mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     mainWindow.setMinimumSize(new Dimension(800, 400));
     mainWindow.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
+    
     table = new DNTTable(new DNTTableModel(data), data);
+    
     mainWindow.getContentPane().add(new JScrollPane(table));
     mainWindow.setPreferredSize(table.getPreferredSize());
     mainWindow.pack();
