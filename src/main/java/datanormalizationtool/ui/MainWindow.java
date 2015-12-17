@@ -19,12 +19,16 @@ import javax.swing.UIManager;
 public class MainWindow {
   private TableData data;
   
+  private DNTTable      table;
+  private JFileChooser  chooser;
+  private JFrame        mainWindow;
+  
   public MainWindow() {
     setLookAndFeel();
   }
   
   public String showFileChooser(String startDir) {
-    JFileChooser chooser = new JFileChooser();
+    chooser = new JFileChooser();
     FileNameExtensionFilter filter = 
             new FileNameExtensionFilter("Excel Spreadsheet", "xlsx");
     chooser.setFileFilter(filter);
@@ -37,11 +41,11 @@ public class MainWindow {
   }
   
   public void showUI() {
-    JFrame mainWindow = new JFrame("DNT");
+    mainWindow = new JFrame("DNT");
     mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     mainWindow.setMinimumSize(new Dimension(800, 400));
     mainWindow.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
-    DNTTable table = new DNTTable(new DNTTableModel(data), data);
+    table = new DNTTable(new DNTTableModel(data), data);
     mainWindow.getContentPane().add(new JScrollPane(table));
     mainWindow.setPreferredSize(table.getPreferredSize());
     mainWindow.pack();
