@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
  *
  * @author cdimaio
  */
-public class DeseDataSheetPatterns {
+public class SheetPatterns {
   public static final LinkedList<Pattern> INITIAL;
   public static final LinkedList<Pattern> ADDITIONS;
   

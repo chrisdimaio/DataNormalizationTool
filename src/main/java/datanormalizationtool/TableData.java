@@ -7,7 +7,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.regex.Pattern;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
@@ -30,24 +32,7 @@ public abstract class TableData {
   public String toString() {
     return table.toString();
   }
-
-  /**
-   * Finds the sheet with data table on it.
-   * @param workbook workbook containing sheets.
-   * @return true if a sheet with data table is found
-   */
-  protected boolean foundDataSheet(Workbook workbook) {
-    Iterator<Sheet> sheetIterator = workbook.sheetIterator();
-    while (sheetIterator.hasNext()) {
-      Sheet sheet = sheetIterator.next();
-      if (foundHeaderRow(sheet)) {
-        dataSheet = sheet;
-        return true;
-      }
-    }
-    return false;
-  }
-
+  
   /**
    * Get cell value at a specified row and column.
    * @param row row of the cell you want the value of.
@@ -120,6 +105,41 @@ public abstract class TableData {
   
   public boolean rowHasWarnings(int rowIndex) {
     return table.rowHasWarnings(rowIndex);
+  }
+  
+  /**
+   * Matches sheet in workbook to pattern.
+   * @param patterns patterns to match worksheet.
+   * @param workbook workbook containing sheets to search.
+   * @return sheet matching pattern or null if no pattern was matched.
+   */
+  protected Sheet findSheet(LinkedList<Pattern> patterns, Workbook workbook) {
+    for (Sheet sheet: workbook) {
+      String sheetName = sheet.getSheetName();
+      for (Pattern p: patterns) {
+        if (p.matcher(sheetName.toLowerCase()).matches()) {
+          return sheet;
+        }
+      }
+    }
+    return null;
+  }
+  
+  /**
+   * Finds the sheet with data table on it.
+   * @param workbook workbook containing sheets.
+   * @return true if a sheet with data table is found
+   */
+  protected boolean foundDataSheet(Workbook workbook) {
+    Iterator<Sheet> sheetIterator = workbook.sheetIterator();
+    while (sheetIterator.hasNext()) {
+      Sheet sheet = sheetIterator.next();
+      if (foundHeaderRow(sheet)) {
+        dataSheet = sheet;
+        return true;
+      }
+    }
+    return false;
   }
   
   protected Workbook readWorkbook(File file) {

@@ -13,14 +13,13 @@ import org.apache.poi.ss.usermodel.Sheet;
  * Class for loading and understanding DESE forms.
  */
 public class DeseDataHandler extends TableData {
-  
-  
+    
   @Override
   public void loadData(File file, int sheetIndex) {
     Workbook workbook = readWorkbook(file);
     
-    System.out.println(findSheet(DeseDataSheetPatterns.ADDITIONS, workbook).getSheetName());
-    System.out.println(findSheet(DeseDataSheetPatterns.INITIAL, workbook).getSheetName());
+    System.out.println(findSheet(SheetPatterns.ADDITIONS, workbook).getSheetName());
+    System.out.println(findSheet(SheetPatterns.INITIAL, workbook).getSheetName());
     
   }
   
