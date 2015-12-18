@@ -26,7 +26,7 @@ class MainClass {
       TableData table = new GenericTableData();
       table.loadData(file, 0);
       Normalizer normalizer = new Normalizer();
-      normalizer.normalize(table);
+      normalizer.normalizeSchoolData(table);
       window.setTable(table);
       window.showUI();
     }
