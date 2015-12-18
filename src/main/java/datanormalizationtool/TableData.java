@@ -138,23 +138,6 @@ public abstract class TableData {
     return null;
   }
   
-  /**
-   * Finds the sheet with data table on it.
-   * @param workbook workbook containing sheets.
-   * @return true if a sheet with data table is found
-   */
-  protected boolean foundDataSheet(Workbook workbook) {
-    Iterator<Sheet> sheetIterator = workbook.sheetIterator();
-    while (sheetIterator.hasNext()) {
-      Sheet sheet = sheetIterator.next();
-      if (foundHeaderRow(sheet)) {
-        dataSheet = sheet;
-        return true;
-      }
-    }
-    return false;
-  }
-  
   protected Workbook readWorkbook(File file) {
     try {
       FileInputStream inputStream = new FileInputStream(file);
