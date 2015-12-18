@@ -3,8 +3,6 @@ package datanormalizationtool.datahandlers;
 import datanormalizationtool.TableData;
 
 import java.io.File;
-import java.util.LinkedList;
-import java.util.regex.Pattern;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.Sheet;
