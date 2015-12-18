@@ -56,7 +56,7 @@ public class DateHandler {
   /**
    * Calculates age based on date string.
    * @param dobstr date to determine age from.
-   * @return age base on dobstr.
+   * @return age base on date of birth string.
    */
   public static int calculateAgeInMonths(String dobstr) {
     try {
