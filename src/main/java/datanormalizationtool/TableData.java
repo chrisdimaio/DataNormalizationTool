@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.regex.Pattern;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
@@ -105,6 +106,18 @@ public abstract class TableData {
   
   public boolean rowHasWarnings(int rowIndex) {
     return table.rowHasWarnings(rowIndex);
+  }
+  
+  protected int findHeader(HeaderList headerList, Row row) {
+    Iterator<Cell> cellIterator = row.cellIterator();
+    while (cellIterator.hasNext()) {
+      Cell cell = cellIterator.next();
+      String cellValue = cellToString(cell);
+      if (headerList.contains(cellValue)) {
+        return cell.getColumnIndex();
+      }
+    }
+    return -1;
   }
   
   /**

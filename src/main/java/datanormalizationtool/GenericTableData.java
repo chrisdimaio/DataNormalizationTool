@@ -80,16 +80,4 @@ public class GenericTableData extends TableData {
     }
     return headerRowFound;
   }
-
-  private int findHeader(HeaderList headerList, Row row) {
-    Iterator<Cell> cellIterator = row.cellIterator();
-    while (cellIterator.hasNext()) {
-      Cell cell = cellIterator.next();
-      String cellValue = cellToString(cell);
-      if (headerList.contains(cellValue)) {
-        return cell.getColumnIndex();
-      }
-    }
-    return -1;
-  }
 }
