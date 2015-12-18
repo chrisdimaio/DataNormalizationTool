@@ -1,5 +1,7 @@
 package datanormalizationtool;
 
+import datanormalizationtool.datahandlers.DeseInitialDataHandler;
+
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
@@ -18,8 +20,9 @@ public class Normalizer {
    * Error checks and cleans TableData data structures.
    * @param data data to be normalized.
    */
-  public void normalize(TableData data) {
+  public void normalizeSchoolData(TableData data) {
     table = data;
+    
     removeDuplicates();
     cleanAndPopulateDates();
     cleanAndMapTownCodes();
