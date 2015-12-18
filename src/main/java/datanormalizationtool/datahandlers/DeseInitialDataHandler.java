@@ -12,7 +12,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 /**
  * Class for loading and understanding DESE forms.
  */
-public class DeseDataHandler extends TableData {
+public class DeseInitialDataHandler extends TableData {
     
   @Override
   public void loadData(File file, int sheetIndex) {
