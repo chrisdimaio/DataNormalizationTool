@@ -5,6 +5,7 @@ import datanormalizationtool.datahandlers.TableData;
 import datanormalizationtool.datahandlers.GenericTableData;
 import datanormalizationtool.ui.MainWindow;
 import datanormalizationtool.datahandlers.DeseInitialDataHandler;
+import datanormalizationtool.ui.progresswindow.ProgressWindow;
 import java.io.File;
 
 class MainClass {
@@ -20,20 +21,27 @@ class MainClass {
             + "/build/resources/main";
     
     MainWindow window = new MainWindow();
-    
     String schoolDataPath   = window.showFileChooser(startDir);
     String initialDataPath  = window.showFileChooser(startDir);
+    ProgressWindow progressBar = new ProgressWindow(13);
+    progressBar.updateBar();
     
     TableData schoolData = new GenericTableData();
     schoolData.loadData(getValidFile(schoolDataPath), 0);
+    progressBar.updateBar();
     
     TableData initialData = new DeseInitialDataHandler();
     initialData.loadData(getValidFile(initialDataPath), 0);
+    progressBar.updateBar();
     
     Normalizer normalizer = new Normalizer();
-    normalizer.normalizeSchoolData(schoolData);
+    normalizer.normalizeSchoolData(schoolData, progressBar);
+    progressBar.updateBar();
+    
+    
     window.setTable(schoolData);
     window.showUI();
+    progressBar.updateBar();
   }
   
   private static File getValidFile(String path) {

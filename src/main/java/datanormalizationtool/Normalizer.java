@@ -1,6 +1,7 @@
 package datanormalizationtool;
 
 import datanormalizationtool.datahandlers.TableData;
+import datanormalizationtool.ui.progresswindow.ProgressWindow;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -19,16 +20,33 @@ public class Normalizer {
   /**
    * Error checks and cleans TableData data structures.
    * @param data data to be normalized.
+   * @param progressBar a progress bar to update.
    */
-  public void normalizeSchoolData(TableData data) {
+  public void normalizeSchoolData(TableData data, ProgressWindow progressBar) {
     table = data;
+    progressBar.updateBar();
+    
     removeDuplicates();
+    progressBar.updateBar();
+    
     cleanAndPopulateDates();
+    progressBar.updateBar();
+    
     cleanAndMapTownCodes();
+    progressBar.updateBar();
+    
     cleanAndValidateGrades();
+    progressBar.updateBar();
+    
     compareAgeToGrade();
+    progressBar.updateBar();
+    
     checkForEmptyCells(DeseTable.COL_MIDDLENAME);
+    progressBar.updateBar();
+    
     table.removeEmptyRows();
+    progressBar.updateBar();
+    progressBar.setVisible(false);
   }
   
   private void checkForEmptyCells(int columnIndex) {

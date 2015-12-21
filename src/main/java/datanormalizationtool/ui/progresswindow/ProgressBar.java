@@ -7,15 +7,27 @@ import javax.swing.JProgressBar;
  * A progress bar.
  */
 public class ProgressBar extends JPanel {
-  private static final int MAX_PROGRESS = 0;
-  private static final int MIN_PROGRESS = 100;
+  private static final int MIN_PROGRESS = 0;
   
-  private final JProgressBar progressBar;
+  private final int maxProgress;
   
-  public ProgressBar() {
+  private int progressValue = 0;
+  
+  private JProgressBar progressBar;
+  
+  public ProgressBar(int numberOfTasks) {
+    maxProgress = numberOfTasks;
+    setUpProgressBar();
+  }
+  
+  public void updateBar() {
+    progressBar.setValue(++progressValue);
+  }
+  
+  private void setUpProgressBar() {
     progressBar = new JProgressBar();
-    progressBar.setMinimum(MAX_PROGRESS);
-    progressBar.setMaximum(MIN_PROGRESS);
+    progressBar.setMinimum(MIN_PROGRESS);
+    progressBar.setMaximum(maxProgress);
     add(progressBar);
   }
 }
