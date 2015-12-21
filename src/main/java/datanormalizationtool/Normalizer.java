@@ -22,7 +22,6 @@ public class Normalizer {
    */
   public void normalizeSchoolData(TableData data) {
     table = data;
-    
     removeDuplicates();
     cleanAndPopulateDates();
     cleanAndMapTownCodes();
