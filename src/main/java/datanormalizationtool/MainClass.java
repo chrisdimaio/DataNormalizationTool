@@ -2,6 +2,7 @@ package datanormalizationtool;
 
 
 import datanormalizationtool.ui.MainWindow;
+import datanormalizationtool.datahandlers.DeseInitialDataHandler;
 import java.io.File;
 
 class MainClass {
@@ -17,18 +18,29 @@ class MainClass {
             + "/build/resources/main";
     
     MainWindow window = new MainWindow();
-    String filePath = window.showFileChooser(startDir);
-    File file = null;
-    if(filePath != null) {
-      file = new File(filePath);
+    
+    String schoolDataPath   = window.showFileChooser(startDir);
+    String initialDataPath  = window.showFileChooser(startDir);
+    
+    TableData schoolData = new GenericTableData();
+    schoolData.loadData(getValidFile(schoolDataPath), 0);
+    
+    TableData initialData = new DeseInitialDataHandler();
+    initialData.loadData(getValidFile(initialDataPath), 0);
+    
+    Normalizer normalizer = new Normalizer();
+    normalizer.normalizeSchoolData(schoolData);
+    window.setTable(schoolData);
+    window.showUI();
+  }
+  
+  private static File getValidFile(String path) {
+    if (path != null) {
+      File result = new File(path);
+      if (result.exists()) {
+        return result;
+      }
     }
-    if (file != null && file.exists()) {
-      TableData table = new GenericTableData();
-      table.loadData(file, 0);
-      Normalizer normalizer = new Normalizer();
-      normalizer.normalizeSchoolData(table);
-      window.setTable(table);
-      window.showUI();
-    }
+    return null;
   }
 }
