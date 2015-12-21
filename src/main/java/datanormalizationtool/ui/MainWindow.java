@@ -1,6 +1,6 @@
 package datanormalizationtool.ui;
 
-import datanormalizationtool.TableData;
+import datanormalizationtool.datahandlers.TableData;
 import datanormalizationtool.ui.menu.MenuBar;
 
 import java.awt.Dimension;

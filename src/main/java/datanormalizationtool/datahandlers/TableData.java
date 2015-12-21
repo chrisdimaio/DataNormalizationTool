@@ -1,5 +1,8 @@
-package datanormalizationtool;
+package datanormalizationtool.datahandlers;
 
+import datanormalizationtool.CellData;
+import datanormalizationtool.DeseTable;
+import datanormalizationtool.HeaderList;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -154,7 +157,7 @@ public abstract class TableData {
    * @param col column of the cell you want to set.
    * @param value the value to be set.
    */
-  protected void setCell(int row, int col, CellData value) {
+  public void setCell(int row, int col, CellData value) {
     table.setCell(row, col, value);
   }
 

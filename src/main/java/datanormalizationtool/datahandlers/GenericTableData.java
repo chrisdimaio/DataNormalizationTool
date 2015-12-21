@@ -1,5 +1,8 @@
-package datanormalizationtool;
+package datanormalizationtool.datahandlers;
 
+import datanormalizationtool.CellData;
+import datanormalizationtool.DeseTable;
+import datanormalizationtool.HeaderData;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;

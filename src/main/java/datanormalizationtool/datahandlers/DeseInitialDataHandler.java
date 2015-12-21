@@ -3,7 +3,6 @@ package datanormalizationtool.datahandlers;
 import datanormalizationtool.CellData;
 import datanormalizationtool.DeseTable;
 import datanormalizationtool.HeaderData;
-import datanormalizationtool.TableData;
 
 import java.io.File;
 import java.util.Iterator;

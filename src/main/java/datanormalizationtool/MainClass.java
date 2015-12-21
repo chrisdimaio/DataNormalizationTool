@@ -1,6 +1,8 @@
 package datanormalizationtool;
 
 
+import datanormalizationtool.datahandlers.TableData;
+import datanormalizationtool.datahandlers.GenericTableData;
 import datanormalizationtool.ui.MainWindow;
 import datanormalizationtool.datahandlers.DeseInitialDataHandler;
 import java.io.File;

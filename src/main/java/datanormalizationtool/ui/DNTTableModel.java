@@ -1,7 +1,7 @@
 package datanormalizationtool.ui;
 
 import datanormalizationtool.CellData;
-import datanormalizationtool.TableData;
+import datanormalizationtool.datahandlers.TableData;
 
 import javax.swing.table.AbstractTableModel;
 

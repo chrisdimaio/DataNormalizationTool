@@ -1,5 +1,6 @@
 package datanormalizationtool;
 
+import datanormalizationtool.datahandlers.TableData;
 import datanormalizationtool.datahandlers.DeseInitialDataHandler;
 
 import java.util.Date;

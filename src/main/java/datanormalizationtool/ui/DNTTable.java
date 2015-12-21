@@ -2,7 +2,7 @@ package datanormalizationtool.ui;
 
 import datanormalizationtool.CellData;
 import datanormalizationtool.Error;
-import datanormalizationtool.TableData;
+import datanormalizationtool.datahandlers.TableData;
 import datanormalizationtool.Warning;
 
 import java.awt.Color;

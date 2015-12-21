@@ -1,5 +1,7 @@
 package datanormalizationtool;
 
+import datanormalizationtool.datahandlers.TableData;
+import datanormalizationtool.datahandlers.GenericTableData;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
