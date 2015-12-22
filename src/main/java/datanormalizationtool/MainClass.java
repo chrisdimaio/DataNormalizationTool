@@ -9,12 +9,12 @@ import datanormalizationtool.ui.progresswindow.ProgressWindow;
 import java.io.File;
 
 class MainClass {
-  private static final String RESOURCE_DIR = "./build/resources/main/";
-  private static final String SAMPLE_DESE_DATA = "FY16_waitlist_October_TEST.xlsx";
-  private static final String SAMPLE_SCHOOL_DATA = "SampleWaitlist_SCHOOL.xlsx";
+  private static final String RESOURCE_DIR          = "./build/resources/main/";
+  private static final String SAMPLE_BIG_DATA       = "Big.xlsx";
+  private static final String SAMPLE_DESE_DATA      = "FY16_waitlist_October_TEST.xlsx";
   private static final String SAMPLE_DUPLICATE_DATA = "Duplicates.xlsx";
-  private static final String SAMPLE_BIG_DATA = "Big.xlsx";
-
+  private static final String SAMPLE_SCHOOL_DATA    = "SampleWaitlist_SCHOOL.xlsx";
+  
   public static void main(String[] args) {
     String startDir = System.getProperty("user.home") 
             + "/Dropbox/Programming Projects/datanormalizationtool"
