@@ -1,11 +1,12 @@
 package datanormalizationtool;
 
-
-import datanormalizationtool.datahandlers.TableData;
-import datanormalizationtool.datahandlers.GenericTableData;
-import datanormalizationtool.ui.MainWindow;
 import datanormalizationtool.datahandlers.DeseInitialDataHandler;
+import datanormalizationtool.datahandlers.GenericTableData;
+import datanormalizationtool.datahandlers.TableData;
+
+import datanormalizationtool.ui.MainWindow;
 import datanormalizationtool.ui.progresswindow.ProgressWindow;
+
 import java.io.File;
 
 class MainClass {
