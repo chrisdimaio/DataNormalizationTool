@@ -24,6 +24,7 @@ class MainClass {
     MainWindow window = new MainWindow();
     String schoolDataPath   = window.showFileChooser(startDir);
     String initialDataPath  = window.showFileChooser(startDir);
+    
     ProgressWindow progressBar = new ProgressWindow(13);
     progressBar.updateBar();
     
@@ -38,7 +39,6 @@ class MainClass {
     Normalizer normalizer = new Normalizer();
     normalizer.normalizeSchoolData(schoolData, progressBar);
     progressBar.updateBar();
-    
     
     window.setTable(schoolData);
     window.showUI();
